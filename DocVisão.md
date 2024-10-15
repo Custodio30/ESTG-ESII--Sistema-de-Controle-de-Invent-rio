@@ -13,6 +13,11 @@ O sistema poderá ser implementado em:
 - **Beneficiários**: Empresas que buscam melhorar a eficiência no gerenciamento de inventários e reduzir perdas de produtos.
 
 ## 4. Equipe do Projeto
+- João Custódio 
+- Bernardo Granadas 
+- Rodrigo Vicente 
+- Tomas Ribalonga 
+- Daniel Amaral
 
 
 ## 5. Características do Sistema
