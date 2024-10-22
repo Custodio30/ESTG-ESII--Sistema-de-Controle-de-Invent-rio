@@ -13,3 +13,11 @@ de sistemas orientados a objetos, ajudando na definição da estrutura do softwa
  Esses modelos permitem visualizar as classes como abstrações de objetos reais, incluindo herança, associações e agregações,
 o que facilita a análise e implementação do código.
 
+
+Definição Testes Unitários:
+- Os Testes unitários são testes que verificam individualmente pequenas partes do código, geralmente funções ou métodos, 
+em um sistema de software. Eles têm como objetivo garantir que cada componente funcione corretamente de forma isolada, 
+sem depender de outros módulos. Estes testes são essenciais para encontrar e corrigir erros rapidamente, melhorando a qualidade 
+e a confiabilidade do código.
+ 
+
