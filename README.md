@@ -21,5 +21,5 @@ O **Sistema de Controle de Inventário** é uma aplicação voltada para empresa
 ## Tecnologias Utilizadas
 - Front-end: React.js
 - Back-end: Node.js
-- Banco de Dados: MongoDB
+- Banco de Dados: MySQL
 - Metodologia: Scrum
