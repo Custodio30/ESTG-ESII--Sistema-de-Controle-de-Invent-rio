@@ -1,0 +1,13 @@
+
+1. Registro e Acompanhamento em Tempo Real
+
+O sistema registra cada carro adicionado ou removido do estoque e atualiza automaticamente o status em tempo real, permitindo um monitoramento preciso do inventário.
+Relatórios Automáticos de Inventário
+
+2. Geração de relatórios periódicos com o status do inventário, mostrando veículos disponíveis, em manutenção ou vendidos. Os relatórios podem ser acessados via dashboard ou enviados por e-mail.
+Controle de Entradas e Saídas
+
+3. Gerenciamento completo do fluxo de carros no estoque, registrando as entradas (novos veículos) e saídas (vendas ou transferências), garantindo precisão e visibilidade do estoque.
+Notificações de Baixo Estoque
+
+4. O sistema envia notificações automáticas. Quando o estoque de certos modelos de carros atinge um nível crítico, permitindo que ações rápidas sejam tomadas para repor o estoque.
