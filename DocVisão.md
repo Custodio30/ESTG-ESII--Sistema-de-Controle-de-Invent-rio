@@ -1,12 +1,12 @@
 # Documento de Visão: Sistema de Controle de Inventário
 
 ## 1. Objetivo
-O **Sistema de Controle de Inventário** tem como objetivo gerenciar e monitorar os produtos em estoque de maneira automatizada e eficiente. O sistema permitirá o acompanhamento de entradas e saídas de itens, fornecendo relatórios em tempo real e notificações sobre níveis críticos de estoque.
+O **Sistema de Controle de Inventário** tem como objetivo gerir e monitorar os produtos em stock de maneira automatizada e eficiente. O sistema permitirá o acompanhamento de entradas e saídas de itens(carros), fornecendo relatórios em tempo real e notificações sobre níveis críticos de stock.
 
 ## 2. Escopo
 O sistema poderá ser implementado em:
-- Pequenas, médias e grandes empresas que necessitam de controle de estoque.
-- Lojas de varejo, centros de distribuição, armazéns e farmácias.
+- Pequenas, médias e grandes empresas que necessitam de controle de stock.
+- Centros de distribuição, armazéns e farmácias.
 
 ## 3. Partes Interessadas
 - **Usuários**: Gerentes de estoque, operadores de depósito e administradores.
@@ -23,8 +23,8 @@ O sistema poderá ser implementado em:
 ## 5. Características do Sistema
 - Registro e acompanhamento de produtos em tempo real.
 - Relatórios automáticos sobre o status do inventário.
-- Controle de entradas e saídas de estoque.
-- Notificações de baixo estoque.
+- Controle de entradas e saídas de stock.
+- Notificações de baixo stock.
 
 ## 6. Arquitetura de Referência
 O sistema será baseado em uma arquitetura cliente-servidor, utilizando React.js no front-end, Node.js no back-end e MongoDB para gerenciamento de dados.
