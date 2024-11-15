@@ -1,0 +1,15 @@
+{
+  "name": "estg-esii--sistema-de-controle-de-invent-rio",
+  "version": "1.0.0",
+  "description": "O **Sistema de Controle de Inventário** é uma aplicação voltada para empresas que desejam gerenciar o seu estoque de forma eficiente. Através deste sistema, os usuários poderão registrar produtos, monitorar o status de itens em estoque, acompanhar entradas e saídas, além de gerar relatórios de inventário em tempo real. Este sistema visa automatizar processos manuais, minimizando erros e otimizando o fluxo de trabalho relacionado à gestão de inventário.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@react-three/drei": "^9.115.0",
+    "@react-three/fiber": "^8.17.10",
+    "bootstrap": "^5.3.3",
+    "react-bootstrap": "^2.10.5",
+    "react-router-dom": "^6.27.0"
+  }
+}

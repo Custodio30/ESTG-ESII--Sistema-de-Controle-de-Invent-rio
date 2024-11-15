@@ -1,0 +1,15 @@
+/* src/styles.css */
+:root {
+    --red: #c32e2e;
+    --dark-gray: #191919;
+    --light-gray: #999999;
+    --white: #ffffff;
+  }
+  
+  body {
+    font-family: 'Assistant', sans-serif;
+    background-color: var(--dark-gray);
+    margin: 0;
+  }
+  
+  
