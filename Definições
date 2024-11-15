@@ -1,0 +1,23 @@
+Definição Casos de Uso: 
+- Os casos de uso são descrições de interações entre um utilizador e um sistema de software, com o objetivo
+de alcançar um resultado específico.
+ Eles representam funcionalidades do sistema de forma clara e estruturada, descrevendo o que acontece durante
+uma sequência de eventos, incluindo cenários alternativos e principais. 
+
+
+Definição Modelos de Classe:
+- Os Modelos de classe são representações visuais que mostram a estrutura de um sistema,descrevendo as classes, 
+atributos, métodos e os relacionamentos entre elas.
+ Utilizados no contexto da UML (Unified Modeling Language), os diagramas de classe são essenciais para o design
+de sistemas orientados a objetos, ajudando na definição da estrutura do software e nas interações entre os componentes.
+ Esses modelos permitem visualizar as classes como abstrações de objetos reais, incluindo herança, associações e agregações,
+o que facilita a análise e implementação do código.
+
+
+Definição Testes Unitários:
+- Os Testes unitários são testes que verificam individualmente pequenas partes do código, geralmente funções ou métodos, 
+em um sistema de software. Eles têm como objetivo garantir que cada componente funcione corretamente de forma isolada, 
+sem depender de outros módulos. Estes testes são essenciais para encontrar e corrigir erros rapidamente, melhorando a qualidade 
+e a confiabilidade do código.
+ 
+

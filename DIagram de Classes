@@ -1,0 +1,45 @@
+|   Carro    |
++------------+
+| - ID       |
+| - modelo   |
+| - ano      |
+| - preço    |
+| - status   | (disponível, vendido, manutenção)
++------------+
+|   Cliente    |
++--------------+
+| - ID         |
+| - nome       |
+| - contato    |
+| - historico_compras |
++--------------+
+|   Inventário   |
++----------------+
+| - total_carros |
+| - carros_disponiveis |
+| - carros_vendidos    |
++----------------+
+|   Reserva    |
++--------------+
+| - ID_reserva |
+| - ID_cliente |
+| - ID_carro   |
+| - data_reserva |
+| - status     | (confirmado, pendente, cancelado)
++--------------+
+|   Transação   |
++---------------+
+| - ID_transacao|
+| - ID_cliente  |
+| - ID_carro    |
+| - data        |
+| - preço_total |
+| - status_pagamento |
++---------------+
+|   Notificação   |
++-----------------+
+| - ID            |
+| - mensagem      |
+| - data          |
+| - tipo          | (alerta de baixo estoque, alerta de manutenção)
++-----------------+
