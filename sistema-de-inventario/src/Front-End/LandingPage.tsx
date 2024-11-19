@@ -1,6 +1,5 @@
 // src/LandingPage.tsx
 import React from 'react';
-import CarModel from './CarModel';
 import '../../style.css';
 
 const LandingPage: React.FC = () => {
@@ -11,7 +10,6 @@ const LandingPage: React.FC = () => {
       </header>
       <main style={styles.main}>
         <div style={styles.modelSection}>
-          <CarModel />
         </div>
         <section style={styles.infoSection}>
           <h2>Bem-vindo ao Sistema de Inventário</h2>

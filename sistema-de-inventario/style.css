@@ -1,6 +1,6 @@
 /* src/styles.css */
 :root {
-    --red: #c32e2e;
+    --red: ##f0f3f4;
     --dark-gray: #191919;
     --light-gray: #999999;
     --white: #ffffff;
@@ -8,7 +8,7 @@
   
   body {
     font-family: 'Assistant', sans-serif;
-    background-color: var(--dark-gray);
+    background-color: var(--red);
     margin: 0;
   }
   
