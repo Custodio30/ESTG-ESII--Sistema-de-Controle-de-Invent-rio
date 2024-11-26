@@ -1,0 +1,49 @@
+/* Centralizar o container */
+.BemVindo-Container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    height: 100vh;          /* Ocupar 100% da altura da tela */
+    text-align: center;     /* Alinhar o texto ao centro */
+    background-color: #f5f5f5; /* Cor de fundo opcional */
+    font-family: 'Times New Roman', Times, serif; /* Fonte padrão */
+  }
+  
+  /* Estilo do texto */
+  .Titulo {
+    font-size: 5rem; 
+    color: #333;   
+    border-right: 2px solid rgba(0,0,0, .75);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .AnimacaoCursor{
+    animation: AnimacaoCursor 500ms steps(40) infinite normal, AnimacaoEscrever 2.3s steps(40) 1s normal both;
+  }
+  
+  @keyframes AnimacaoEscrever{
+
+    from{
+        width: 0;
+    }
+    to{
+        width: 7em;
+
+    }
+
+  }
+
+
+  @keyframes AnimacaoCursor{
+
+    from{
+        border-right-color: rgba(0,0,0, .75);
+    }
+    to{
+        border-right-color: transparent;
+    }
+
+  }
+  

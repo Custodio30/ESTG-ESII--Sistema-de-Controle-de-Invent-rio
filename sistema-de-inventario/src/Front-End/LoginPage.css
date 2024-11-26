@@ -7,14 +7,94 @@ body {
   background-color: #f5f5f5;
 }
 
+/* Estilos gerais do Container */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Estilos do Card */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  width: 300px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cabeçalho do Card */
+.card h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grupo de Formulário */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Botão de Enviar */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* Botão de Alternar Modo */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+
 .box {
-  position: relative;
+  position: absolute; /* Permite posicionar a caixa independentemente */
+  top: 85%; /* Move o topo da caixa para o meio da tela */
+  left: 44%; /* Move o lado esquerdo da caixa para o meio da tela */
+  transform: translate(-50%, -50%); /* Centraliza completamente (ajuste de margem) */
   width: 200px;
   height: 150px;
   transform-style: preserve-3d;
-  transform: translateY(-200%) rotateX(170deg) rotateY(-30deg); /* Começa fora da tela */
-  animation: dropBox 1.5s ease-out forwards, openBox 1s ease-out 1.5s forwards; /* Queda e abertura */
-  margin-bottom: 40px;
+  animation: dropBox 1.5s ease-out forwards, openBox 1s ease-out 1.5s forwards;
 }
 
 .box-side,
@@ -109,7 +189,7 @@ body {
 }
 
 .box-lid-front {
-  animation: openLidFront 1.1s ease-out 1.7s forwards;
+  animation: openLidFront 3s ease-out 3s forwards;
 }
 
 @keyframes openLidFront {
@@ -122,7 +202,7 @@ body {
 }
 
 .box-lid-back {
-  animation: openLidBack 1.1s ease-out 1.7s forwards;
+  animation: openLidBack 4s ease-out 4s forwards;
 }
 
 @keyframes openLidBack {
@@ -135,7 +215,7 @@ body {
 }
 
 .box-lid-left {
-  animation: openLidLeft 1s ease-out 1.5s forwards;
+  animation: openLidLeft 2s ease-out 2s forwards;
 }
 
 @keyframes openLidLeft {
@@ -154,21 +234,30 @@ body {
   {
     transform: rotateY(-90deg) translateZ(9px) translateY(147px) translateX(-75px) rotateX(10deg); /* Inicialmente fechada */
   }
-  80%
+  70%
   {
     transform: rotateY(-90deg) translateZ(70px) translateY(155px) translateX(-150px) rotateX(30deg); /* Inicialmente fechada */
   }
-  85%
+  75%
   {
     transform: rotateY(-90deg) translateZ(125px) translateY(155px) translateX(-220px) rotateX(50deg); /* Inicialmente fechada */
   }
-  90%
+  80%
   {
     transform: rotateY(-90deg) translateZ(206px) translateY(155px) translateX(-335px) rotateX(80deg); /* Inicialmente fechada */
   }
-  95%
+  85%
   {
     transform: rotateY(-90deg) translateZ(210px) translateY(128px) translateX(-350px) rotateX(110deg); /* Inicialmente fechada */
+  }
+  90%
+  {
+    transform: rotateY(-90deg) translateZ(200px) translateY(117px) translateX(-340px) rotateX(120deg); /* Inicialmente fechada */
+
+  }
+  95%
+  {
+    transform: rotateY(-90deg) translateZ(200px) translateY(111px) translateX(-350px) rotateX(130deg); /* Inicialmente fechada */
   }
   100% {
     transform: rotateY(-90deg) translateZ(200px) translateY(106px) translateX(-360px) rotateX(140deg); /* Inicialmente fechada */
