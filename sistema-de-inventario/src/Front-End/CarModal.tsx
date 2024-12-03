@@ -3,10 +3,9 @@ import React, { useState } from "react";
 interface CarModalProps {
   isVisible: boolean;
   onClose: () => void;
-  onSave: (carData: { title: string; description: string; items: string[] }) => void;
 }
 
-const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose, onSave }) => {
+const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
   const [carData, setCarData] = useState({
     title: "Card title",
     description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
@@ -30,11 +29,6 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose, onSave }) => {
       // Atualiza título ou descrição
       setCarData((prevData) => ({ ...prevData, [name]: value }));
     }
-  };
-
-  const handleSave = () => {
-    onSave(carData);
-    onClose();
   };
 
   if (!isVisible) {
@@ -96,7 +90,7 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose, onSave }) => {
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Cancelar
             </button>
-            <button type="button" className="btn btn-primary" onClick={handleSave}>
+            <button type="button" className="btn btn-primary">
               Salvar
             </button>
           </div>

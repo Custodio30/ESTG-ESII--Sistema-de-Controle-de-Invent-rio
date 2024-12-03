@@ -1,24 +1,20 @@
+// src/components/LandingPage.tsx
 import React, { useEffect, useState, useRef } from "react";
 import "../Front-End/LandingPage.css";
 import CarModal from "./CarModal";
+import { invokeCohere } from "../CohereApi"; // Importe a função
 
 const LandingPage: React.FC = () => {
   const [nome, setNome] = useState<string>("Usuário"); // Valor padrão
   const [mostrarCursor, setMostrarCursor] = useState(true); // Controla o cursor
   const [mostrarNavbar, setMostrarNavbar] = useState(false);
   const [mostrarBotao, setMostrarBotao] = useState(false);
-  const [carros, setCarros] = useState<Array<{ marca: string; modelo: string; ano: string }>>([]);
   const [mostrarModal, setMostrarModal] = useState(false);
-
+  const [respostaAI, setRespostaAI] = useState<string>(""); // Para exibir a resposta do AI
+  const [textoInput, setTextoInput] = useState<string>(""); // Estado para armazenar o texto do input
 
   const handleAbrirModal = () => setMostrarModal(true);
   const handleFecharModal = () => setMostrarModal(false);
-
-
-  const handleAdicionarCarro = (carData: { marca: string; modelo: string; ano: string }) => {
-    setCarros([...carros, carData]);
-    console.log("Carro adicionado:", carData);
-  };
 
   const tituloRef = useRef<HTMLHeadingElement>(null);
 
@@ -34,7 +30,6 @@ const LandingPage: React.FC = () => {
       setMostrarNavbar(true);
       setMostrarBotao(true);
       console.log("Mostrar Navbar:", true);
-
     };
 
     const titulo = tituloRef.current;
@@ -49,18 +44,31 @@ const LandingPage: React.FC = () => {
     };
   }, []);
 
+  // Função para invocar o modelo AI
+  const handleInvokeAI = async () => {
+    if (!textoInput.trim()) {
+      setRespostaAI("Por favor, insira um texto válido.");
+      return;
+    }
+
+    try {
+      const resposta = await invokeCohere(textoInput); // Usa o texto do input
+      setRespostaAI(resposta); // Atualiza o estado com a resposta do AI
+    } catch (error) {
+      setRespostaAI("Erro ao obter a resposta. Tente novamente.");
+    }
+  };
+
   return (
     <div>
-        <div>
-          {mostrarBotao &&(
-            <i className="bi bi-plus Mais" onClick={(handleAbrirModal)} ></i>
-          )}
-        </div>
-        <CarModal
-        isVisible={mostrarModal}
-        onClose={handleFecharModal}
-        onSave={handleAdicionarCarro}
-      />
+      <div>
+        {mostrarBotao && (
+          <i className="bi bi-plus Mais" onClick={handleAbrirModal}></i>
+        )}
+      </div>
+
+      <CarModal isVisible={mostrarModal} onClose={handleFecharModal} />
+
       {mostrarNavbar && (
         <div className="NavContainer">
           <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -76,10 +84,7 @@ const LandingPage: React.FC = () => {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div
-                className="collapse navbar-collapse"
-                id="navbarTogglerDemo01"
-              >
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a className="navbar-brand" href="#">
                   Perfil
                 </a>
@@ -100,7 +105,8 @@ const LandingPage: React.FC = () => {
           </nav>
         </div>
       )}
-      <div className="BemVindo-Container ">
+
+      <div className="BemVindo-Container">
         <h1
           ref={tituloRef}
           className={`Titulo ${
@@ -109,6 +115,27 @@ const LandingPage: React.FC = () => {
         >
           Bem-Vindo {nome}
         </h1>
+
+        {/* Input de texto */}
+        <div className="InputContainer">
+          <textarea
+            placeholder="Digite seu texto aqui..."
+            value={textoInput}
+            onChange={(e) => setTextoInput(e.target.value)}
+            className="form-control"
+            rows={4}
+          ></textarea>
+          <button onClick={handleInvokeAI} className="btn btn-primary mt-2">
+            Enviar para AI
+          </button>
+        </div>
+
+        {/* Exibir a resposta do modelo */}
+        {respostaAI && (
+          <div className="RespostaAI mt-3">
+            <p>Resposta da AI: {respostaAI}</p>
+          </div>
+        )}
       </div>
     </div>
   );
