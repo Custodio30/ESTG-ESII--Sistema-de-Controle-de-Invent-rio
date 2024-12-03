@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../Front-End/LandingPage.css";
 import CarModal from "./CarModal";
-import { invokeCohere } from "../CohereApi"; // Importe a função
+import ChatBot from "./ChatBot";
+
 
 const LandingPage: React.FC = () => {
   const [nome, setNome] = useState<string>("Usuário"); // Valor padrão
@@ -10,8 +11,6 @@ const LandingPage: React.FC = () => {
   const [mostrarNavbar, setMostrarNavbar] = useState(false);
   const [mostrarBotao, setMostrarBotao] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [respostaAI, setRespostaAI] = useState<string>(""); // Para exibir a resposta do AI
-  const [textoInput, setTextoInput] = useState<string>(""); // Estado para armazenar o texto do input
 
   const handleAbrirModal = () => setMostrarModal(true);
   const handleFecharModal = () => setMostrarModal(false);
@@ -44,20 +43,6 @@ const LandingPage: React.FC = () => {
     };
   }, []);
 
-  // Função para invocar o modelo AI
-  const handleInvokeAI = async () => {
-    if (!textoInput.trim()) {
-      setRespostaAI("Por favor, insira um texto válido.");
-      return;
-    }
-
-    try {
-      const resposta = await invokeCohere(textoInput); // Usa o texto do input
-      setRespostaAI(resposta); // Atualiza o estado com a resposta do AI
-    } catch (error) {
-      setRespostaAI("Erro ao obter a resposta. Tente novamente.");
-    }
-  };
 
   return (
     <div>
@@ -115,27 +100,7 @@ const LandingPage: React.FC = () => {
         >
           Bem-Vindo {nome}
         </h1>
-
-        {/* Input de texto */}
-        <div className="InputContainer">
-          <textarea
-            placeholder="Digite seu texto aqui..."
-            value={textoInput}
-            onChange={(e) => setTextoInput(e.target.value)}
-            className="form-control"
-            rows={4}
-          ></textarea>
-          <button onClick={handleInvokeAI} className="btn btn-primary mt-2">
-            Enviar para AI
-          </button>
-        </div>
-
-        {/* Exibir a resposta do modelo */}
-        {respostaAI && (
-          <div className="RespostaAI mt-3">
-            <p>Resposta da AI: {respostaAI}</p>
-          </div>
-        )}
+        <ChatBot />
       </div>
     </div>
   );
