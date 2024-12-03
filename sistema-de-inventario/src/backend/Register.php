@@ -1,10 +1,10 @@
 <?php
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *"); // Permite qualquer origem
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Métodos permitidos
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-// Tratando requisições OPTIONS (Preflight)
+// Trata preflight (requisições OPTIONS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204); // Sem conteúdo
     exit();
@@ -68,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
             http_response_code(201);
             echo json_encode([
                 "status" => "success",
-                "message" => "Utilizador registrado com sucesso!"
+                "message" => "Utilizador registrado com sucesso!",
+                "nome" => $nome
             ]);
         } else {
             http_response_code(400);

@@ -10,4 +10,13 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    proxy: {
+      '/backend': {
+        target: 'http://localhost', // URL do backend PHP
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });

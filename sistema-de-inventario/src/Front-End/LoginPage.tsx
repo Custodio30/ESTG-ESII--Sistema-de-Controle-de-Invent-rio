@@ -13,7 +13,8 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    
+    const nome = (document.getElementById('nome') as HTMLInputElement)?.value || '';
     const email = (document.getElementById('email') as HTMLInputElement)?.value || '';
     const password = (document.getElementById('password') as HTMLInputElement)?.value || '';
 
@@ -22,9 +23,10 @@ const LoginPage: React.FC = () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                nome,
                 email,
                 password,
-                isLoginMode: true,
+                isLoginMode,
             }),
         });
 
@@ -84,7 +86,7 @@ const LoginPage: React.FC = () => {
             {isLoginMode ? 'Criar Conta' : 'Já tem uma conta? Faça Login'}
           </button>
         </div>
-      </div>
+      </div>     
       <div className="box">
       <div className="box-lid box-lid-front"></div>
       <div className="box-lid box-lid-back"></div>
