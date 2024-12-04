@@ -4,12 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from '../src/Front-End/LoginPage';
 import LandingPage from '../src/Front-End/LandingPage';
 import CarModel from '../src/Front-End/CarModel';
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "../src/Front-End/LoginPage";
-import LandingPage from "../src/Front-End/LandingPage";
-import CarModel from "../src/Front-End/CarModel";
-import { getAnswer } from "langchain";
+
 
 const App: React.FC = () => {
   const [quest, setQuestion] = useState(""); // Nome do estado ajustado para ser consistente
@@ -26,6 +21,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/CarModel" element={<CarModel />} />
+        <Route path="/Perfil" element={<Perfil />} />
         <Route path="/landing" element={<LandingPage />} />
       </Routes>
 

@@ -1,24 +1,19 @@
+// src/components/LandingPage.tsx
 import React, { useEffect, useState, useRef } from "react";
 import "../Front-End/LandingPage.css";
 import CarModal from "./CarModal";
+import ChatBot from "./ChatBot";
+
 
 const LandingPage: React.FC = () => {
   const [nome, setNome] = useState<string>("Usuário"); // Valor padrão
   const [mostrarCursor, setMostrarCursor] = useState(true); // Controla o cursor
   const [mostrarNavbar, setMostrarNavbar] = useState(false);
   const [mostrarBotao, setMostrarBotao] = useState(false);
-  const [carros, setCarros] = useState<Array<{ marca: string; modelo: string; ano: string }>>([]);
   const [mostrarModal, setMostrarModal] = useState(false);
-
 
   const handleAbrirModal = () => setMostrarModal(true);
   const handleFecharModal = () => setMostrarModal(false);
-
-
-  const handleAdicionarCarro = (carData: { marca: string; modelo: string; ano: string }) => {
-    setCarros([...carros, carData]);
-    console.log("Carro adicionado:", carData);
-  };
 
   const tituloRef = useRef<HTMLHeadingElement>(null);
 
@@ -34,7 +29,6 @@ const LandingPage: React.FC = () => {
       setMostrarNavbar(true);
       setMostrarBotao(true);
       console.log("Mostrar Navbar:", true);
-
     };
 
     const titulo = tituloRef.current;
@@ -49,18 +43,17 @@ const LandingPage: React.FC = () => {
     };
   }, []);
 
+
   return (
     <div>
-        <div>
-          {mostrarBotao &&(
-            <i className="bi bi-plus Mais" onClick={(handleAbrirModal)} ></i>
-          )}
-        </div>
-        <CarModal
-        isVisible={mostrarModal}
-        onClose={handleFecharModal}
-        onSave={handleAdicionarCarro}
-      />
+      <div>
+        {mostrarBotao && (
+          <i className="bi bi-plus Mais" onClick={handleAbrirModal}></i>
+        )}
+      </div>
+
+      <CarModal isVisible={mostrarModal} onClose={handleFecharModal} />
+
       {mostrarNavbar && (
         <div className="NavContainer">
           <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -76,10 +69,7 @@ const LandingPage: React.FC = () => {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div
-                className="collapse navbar-collapse"
-                id="navbarTogglerDemo01"
-              >
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a className="navbar-brand" href="#">
                   Perfil
                 </a>
@@ -100,7 +90,8 @@ const LandingPage: React.FC = () => {
           </nav>
         </div>
       )}
-      <div className="BemVindo-Container ">
+
+      <div className="BemVindo-Container">
         <h1
           ref={tituloRef}
           className={`Titulo ${
@@ -109,6 +100,7 @@ const LandingPage: React.FC = () => {
         >
           Bem-Vindo {nome}
         </h1>
+        <ChatBot />
       </div>
     </div>
   );
