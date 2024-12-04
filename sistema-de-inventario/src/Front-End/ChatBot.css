@@ -1,109 +1,114 @@
 .ChatBot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  
-  /* Ícone do chatbot */
-  .ChatBot-Icon {
-    background-color: #007bff;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-  }
-  
-  .ChatBot-Icon:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Janela do chatbot */
-  .ChatBot-Window {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 350px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .ChatBot-Header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .ChatBot-Header button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .ChatBot-Messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-  }
-  
-  .ChatBot-Message {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    max-width: 80%;
-  }
-  
-  .UserMessage {
-    background-color: #007bff;
-    color: white;
-    align-self: flex-end;
-  }
-  
-  .AIMessage {
-    background-color: #f1f1f1;
-    align-self: flex-start;
-  }
-  
-  .ChatBot-Input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-  }
-  
-  .ChatBot-Input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .ChatBot-Input button {
-    margin-left: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .ChatBot-Input button:hover {
-    background-color: #0056b3;
-  }
-  
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Ícone do chatbot */
+.ChatBot-Icon {
+  background-color: black;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.ChatBot-Icon:hover {
+  background-color: #444; /* Cor de hover */
+}
+
+/* Janela do chatbot */
+.ChatBot-Window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  background-color: white;
+  border: 1px solid #000; /* Borda preta */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.ChatBot-Header {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.ChatBot-Header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ChatBot-Messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9; /* Fundo mais claro */
+  max-height: 300px;
+}
+
+.ChatBot-Message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.UserMessage {
+  background-color: black;
+  color: white;
+  align-self: flex-end;
+}
+
+.AIMessage {
+  background-color: #e1e1e1;
+  color: black;
+  align-self: flex-start;
+}
+
+.ChatBot-Input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #000;
+}
+
+.ChatBot-Input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+
+.ChatBot-Input button {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ChatBot-Input button:hover {
+  background-color: #444;
+}

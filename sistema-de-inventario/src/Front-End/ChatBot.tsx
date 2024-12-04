@@ -29,7 +29,7 @@ const ChatBot: React.FC = () => {
       {/* Ícone de mensagem */}
       {!isChatOpen && (
         <div className="ChatBot-Icon" onClick={() => setIsChatOpen(true)}>
-          <i className="bi bi-chat-dots"></i> {/* Use Bootstrap Icons ou FontAwesome */}
+          <i className="bi bi-chat-left"></i>
         </div>
       )}
 
