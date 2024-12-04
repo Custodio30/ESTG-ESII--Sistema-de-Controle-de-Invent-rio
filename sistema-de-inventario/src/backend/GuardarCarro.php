@@ -4,21 +4,6 @@ header("Access-Control-Allow-Origin: *"); // Permite qualquer origem
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Métodos permitidos
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-echo json_encode([
-    "status" => "success",
-    "message" => "Carro salvo com sucesso!",
-    "carro" => [
-        "modelo" => $modelo,
-        "descricao" => $descricao,
-        "kms" => $kms,
-        "tipo" => $tipo,
-        "ano" => $ano,
-        "marca" => $marca,
-        "preco" => $preco,
-        "imagem" => $image
-    ]
-]);
-
 // Trata preflight (requisições OPTIONS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204); // Sem conteúdo
@@ -43,6 +28,7 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
+    // Inicializa as variáveis somente se os dados forem válidos
     $modelo = $data["title"] ?? null; // Nome do carro
     $descricao = $data["description"] ?? null; // Descrição do carro
     $kms = isset($data["items"][0]) ? floatval($data["items"][0]) : null; // Km's
@@ -65,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
     // Prepara a query SQL para inserção
     $sql = "INSERT INTO carros (modelo, descricao, kms, tipo, ano, marca, preco, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssdsiss", $modelo, $descricao, $kms, $tipo, $ano, $marca, $preco, $image);
+    $stmt->bind_param("ssdsisss", $modelo, $descricao, $kms, $tipo, $ano, $marca, $preco, $image);
 
     if ($stmt->execute()) {
         http_response_code(201);
@@ -93,8 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
 
     $stmt->close();
 } else {
+    // Responde apropriadamente se a requisição não for válida
     http_response_code(400);
-    echo json_encode(["message" => "Requisição inválida."]);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Requisição inválida ou dados ausentes."
+    ]);
 }
 
 $conn->close();
