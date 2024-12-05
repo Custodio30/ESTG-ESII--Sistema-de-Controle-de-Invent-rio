@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@langchain/cohere": "^0.3.1",
     "@react-three/drei": "^9.115.0",
     "@react-three/fiber": "^8.17.10",
     "bootstrap": "^5.3.3",
