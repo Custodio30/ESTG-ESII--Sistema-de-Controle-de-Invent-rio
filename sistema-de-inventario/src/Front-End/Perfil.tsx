@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
-import React from "react";
-import "../Stylesheets/Perfil.css";
-=======
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Necessário para navegação
 import LoginPage from "./LoginPage";
->>>>>>> Stashed changes
 
 const Perfil: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticação
@@ -17,7 +12,7 @@ const Perfil: React.FC = () => {
   };
 
   const handleLoginRedirect = () => {
-    navigate("/login"); // Redireciona para a página de login
+    navigate("/"); // Redireciona para a página de login
   };
 
   return (

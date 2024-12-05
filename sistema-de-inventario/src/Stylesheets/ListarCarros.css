@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+.ListarCarrosContainer {
+  margin: 0 auto; /* Centraliza */
+  padding: 16px; /* Espaçamento interno */
+  max-width: 100%; /* Garante que não ultrapasse a largura */
+  overflow-x: hidden; /* Evita que elementos causem scroll horizontal */
+  display: flex; /* Organiza os cards em uma linha */
+  flex-wrap: wrap; /* Permite que os cards "quebrem linha" se necessário */
+  justify-content: center; /* Centraliza os cards no contêiner */
+  gap: 16px; /* Espaçamento entre os cards */
+}
+
+.ListarCarrosCard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 250px; /* Largura fixa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  flex: 0 0 auto; /* Garante que cada card tenha a largura especificada */
+}
+
+.ListarCarrosImagem {
+  width: 100%; /* Garante que a imagem ocupe 100% da largura do card */
+  height: auto; /* Mantém a proporção */
+  border-radius: 8px 8px 0 0;
+}
+

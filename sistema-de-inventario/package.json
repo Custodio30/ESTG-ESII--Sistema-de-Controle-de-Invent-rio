@@ -27,7 +27,8 @@
     "langsmith": "^0.2.7",
     "openai": "^4.73.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.0.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

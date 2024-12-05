@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../Stylesheets/CarModal.css"; 
+import "../Stylesheets/ListarCarros.css"; 
 
 
 interface CardData {
@@ -15,7 +15,7 @@ interface CardData {
   imagem: string; 
 }
 
-const CardModal: React.FC = () => {
+const ListarCarros: React.FC = () => {
   const [cards, setCards] = useState<CardData[]>([]); 
   const [loading, setLoading] = useState<boolean>(true); 
   const [error, setError] = useState<string | null>(null); 
@@ -39,10 +39,10 @@ const CardModal: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="card-container">
+    <div className="card-container ListarCarrosContainer">
       {cards.map((card) => (
-        <div key={card.CarrosID} className="card">
-          {card.imagem && <img src={card.imagem} alt={card.modelo} className="card-image" />}
+        <div key={card.CarrosID} className="card ListarCarrosCard">
+          {card.imagem && <img src={card.imagem} alt={card.modelo} className="card-image ListarCarrosImagem" />}
           <h3>{card.modelo}</h3>
           <p>{card.descricao}</p>
           <p>{card.km}</p>
@@ -56,4 +56,4 @@ const CardModal: React.FC = () => {
   );
 };
 
-export default CardModal;
+export default ListarCarros;
