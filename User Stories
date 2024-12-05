@@ -5,3 +5,19 @@ Como operador de depósito, quero registrar as entradas e saídas de produtos no
 Como administrador, quero gerar relatórios detalhados sobre o inventário semanalmente, para que eu possa analisar o desempenho e tomar decisões informadas.
 
 Como funcionário de vendas, quero verificar rapidamente a disponibilidade de produtos, para que eu possa informar os clientes com precisão.
+
+Como funcionário de vendas, quero pesquisar rapidamente a disponibilidade de carros por modelo, cor e ano, para que eu possa oferecer opções precisas aos clientes.
+
+Como funcionário de vendas, quero verificar em tempo real o inventário de outros depósitos, para que eu possa sugerir alternativas aos clientes caso o modelo desejado não esteja disponível localmente.
+
+Como administrador, quero gerar relatórios mensais com informações sobre os carros mais vendidos, para que eu possa identificar tendências de mercado.
+
+Como administrador, quero monitorar os níveis de estoque por localidade, para que eu possa redistribuir os carros de maneira eficiente.
+
+Como operador de depósito, quero registrar a entrada de novos carros no sistema com informações detalhadas, como modelo, ano e cor, para manter o inventário atualizado.
+
+Como operador de depósito, quero poder registrar saídas de carros vendendo ou transferindo para outros locais, para que o inventário reflita com precisão a disponibilidade atual.
+
+Como gerente de estoque, quero ser notificado quando o número de carros disponíveis de um modelo específico estiver abaixo de um limite, para que eu possa planejar novas aquisições.
+
+Como gerente de estoque, quero ter acesso a uma visão geral dos carros disponíveis por tipo e modelo, para que eu possa gerenciar a oferta de forma eficiente.
