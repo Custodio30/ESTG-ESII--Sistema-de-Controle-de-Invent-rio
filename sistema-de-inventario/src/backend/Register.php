@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
             echo json_encode([
                 "status" => "success",
                 "message" => "Login bem-sucedido!",
-                "nome" => $retrievedName 
+                "nome" => $retrievedName, 
                 "RegistoID" => $RegistoID
             ]);
         } else {

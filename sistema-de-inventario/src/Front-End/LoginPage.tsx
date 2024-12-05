@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
         if (response.ok && result.status === "success") {
             alert(result.message);
             localStorage.setItem('nomeUsuario', result.nome); 
-            localStorage.setItem('nomeUsuario', result.RegistoID); 
+            localStorage.setItem('RegistoID', result.RegistoID); 
             navigate('/landing'); 
         } else {
             alert(result.message);

@@ -13,6 +13,8 @@ const Perfil: React.FC = () => {
   const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
+    const registoID = localStorage.getItem("RegistoID");
+    console.log(registoID);
     // Simula a obtenção de dados do utilizador (API ou LocalStorage)
     const mockUser: UserProfile = {
       email: "usuario@example.com",
