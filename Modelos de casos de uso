@@ -1,1 +1,104 @@
+Caso de Uso 1:
+Gerenciar Entrada de Carros no Estoque
+Ator Principal: Operador de Depósito
+Descrição: Registrar a entrada de novos carros no sistema para atualizar o inventário.
+Fluxo Principal:
 
+O operador de depósito acessa o sistema.
+Seleciona a opção "Adicionar Carro".
+Insere informações do carro (VIN, modelo, marca, ano, cor, condição, localização e preço).
+Confirma os dados.
+O sistema armazena o carro no inventário e confirma a operação.
+Fluxo Alternativo:
+Se o VIN já existir, o sistema alerta o operador e impede a duplicação.
+
+Caso de Uso 2: 
+
+Registrar Saída de Carros
+Ator Principal: Operador de Depósito
+Descrição: Registrar a saída de carros vendidos ou transferidos para outros estoques.
+Fluxo Principal:
+
+O operador acessa o sistema.
+Seleciona a opção "Registrar Saída".
+Insere o VIN do carro e o motivo da saída (venda ou transferência).
+Confirma a operação.
+O sistema atualiza o status do carro para "Indisponível" no inventário.
+
+Caso de Uso 3: 
+
+Consultar Disponibilidade de Carros
+Ator Principal: Funcionário de Vendas
+Descrição: Consultar o sistema para verificar a disponibilidade de carros para clientes.
+Fluxo Principal:
+
+O funcionário de vendas acessa o sistema.
+Insere critérios de busca (modelo, marca, ano, cor, etc.).
+O sistema exibe uma lista de carros disponíveis que atendem aos critérios.
+O funcionário de vendas informa o cliente ou reserva o carro no sistema.
+
+
+Caso de Uso 4: 
+
+Notificar Baixo Estoque
+Ator Principal: Sistema
+Descrição: Alertar o gerente de estoque quando o nível de estoque de um modelo específico estiver baixo.
+Fluxo Principal:
+
+O sistema verifica os níveis de estoque periodicamente.
+Identifica modelos com quantidade abaixo do limite definido.
+Envia uma notificação ao gerente de estoque com detalhes dos modelos em baixa.
+
+Caso de Uso 5:
+
+Gerar Relatórios de Inventário
+Ator Principal: Administrador
+Descrição: Gerar relatórios detalhados para análise de desempenho e rotatividade de estoque.
+Fluxo Principal:
+
+O administrador acessa o sistema.
+Seleciona a opção "Gerar Relatório".
+Escolhe o tipo de relatório (estoque atual, vendas, rotatividade, etc.).
+O sistema processa os dados e exibe o relatório gerado.
+O administrador visualiza ou exporta o relatório.
+
+Caso de Uso 6:
+
+Interagir com Chatbot
+Ator Principal: Cliente
+Descrição: Utilizar o chatbot para consultar informações sobre o inventário.
+Fluxo Principal:
+
+O cliente acessa o chatbot.
+Faz uma pergunta (ex.: "Quais SUVs estão disponíveis?").
+O chatbot consulta o inventário e retorna uma lista de opções disponíveis.
+O cliente escolhe uma ação, como agendar um test drive ou solicitar mais informações.
+Fluxo Alternativo:
+
+Se o chatbot não entender a pergunta, sugere opções pré-definidas ou transfere para um funcionário.
+
+Caso de Uso 7: 
+
+Reservar um Carro
+Ator Principal: Funcionário de Vendas
+Descrição: Reservar um carro para um cliente por tempo limitado.
+Fluxo Principal:
+
+O funcionário acessa o sistema.
+Busca o carro desejado no inventário.
+Seleciona a opção "Reservar".
+Insere os dados do cliente e a duração da reserva.
+O sistema atualiza o status do carro para "Reservado" e registra o responsável pela reserva.
+
+Caso de Uso 8: 
+
+Gerenciar Permissões de Usuário
+Ator Principal: Administrador
+Descrição: Configurar permissões para diferentes tipos de usuários do sistema.
+Fluxo Principal:
+
+O administrador acessa o sistema.
+Navega até a opção "Gerenciar Usuários".
+Seleciona um usuário existente ou cria um novo.
+Define o papel do usuário (Admin, Vendas, Operador) e suas permissões.
+O sistema atualiza as permissões no banco de dados.
