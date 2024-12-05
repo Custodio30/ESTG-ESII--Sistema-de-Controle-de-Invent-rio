@@ -1,8 +1,9 @@
 // src/components/LandingPage.tsx
 import React, { useEffect, useState, useRef } from "react";
-import "../Front-End/LandingPage.css";
+import "../Stylesheets/LandingPage.css";
 import CarModal from "./CarModal";
 import ChatBot from "./ChatBot";
+import CardModal from "./CardModal";
 
 
 const LandingPage: React.FC = () => {
@@ -100,6 +101,7 @@ const LandingPage: React.FC = () => {
         >
           Bem-Vindo {nome}
         </h1>
+        <CardModal />
         <ChatBot />
       </div>
     </div>

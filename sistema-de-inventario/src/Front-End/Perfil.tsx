@@ -1,4 +1,5 @@
 import React from "react";
+import "../Stylesheets/Perfil.css";
 
 type UserProfile = {
   name: string;

@@ -1,16 +1,15 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Origin: *"); // Permite qualquer origem
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Métodos permitidos
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-// Trata preflight (requisições OPTIONS)
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204); // Sem conteúdo
+    http_response_code(204); 
     exit();
 }
 
-// Configuração do banco de dados
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -24,7 +23,7 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Decodifica o corpo da requisição
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
@@ -34,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
     $isLoginMode = $data["isLoginMode"];
 
     if ($isLoginMode) {
-        // Modo de Login
         $sql = "SELECT nome, password FROM registo WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -47,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
             echo json_encode([
                 "status" => "success",
                 "message" => "Login bem-sucedido!",
-                "nome" => $retrievedName // Retorna o nome do usuário
+                "nome" => $retrievedName 
             ]);
         } else {
             http_response_code(401);
@@ -58,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
         }
         $stmt->close();
     } else {
-        // Modo de Registro
+ 
         $sql = "INSERT INTO registo (nome, email, password) VALUES (?, ?, ?)";
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $conn->prepare($sql);

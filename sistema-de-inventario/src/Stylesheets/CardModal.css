@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.card-container {
+  margin: 0 auto; /* Centraliza */
+  padding: 16px; /* Espaçamento interno */
+  max-width: 100%; /* Garante que não ultrapasse a largura */
+  overflow-x: hidden; /* Evita que elementos causem scroll horizontal */
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.card-image {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}

@@ -1,6 +1,10 @@
 // Front-End/ChatBot.tsx
 import React, { useState } from "react";
+<<<<<<< Updated upstream
 import "../Front-End/ChatBot.css";
+=======
+import "../Stylesheets/ChatBot.css";
+>>>>>>> Stashed changes
 import { invokeCohere } from "../CohereApi";
 
 const ChatBot: React.FC = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Front-End/LoginPage.css';
+import '../Stylesheets/LoginPage.css';
 
 const LoginPage: React.FC = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);

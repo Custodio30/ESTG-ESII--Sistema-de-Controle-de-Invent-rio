@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CarModal.css";
+import "../Stylesheets/CarModal.css";
 
 interface CarModalProps {
   isVisible: boolean;
@@ -26,7 +26,7 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
       setCarData((prevData) => {
         const updatedItems = [...prevData.items];
 
-        // Validação para Km's e Preço
+        
         if (index === 0 || index === 4) {
           const validValue = value.match(/^\d*\.?\d{0,3}$/) ? value : prevData.items[index];
           updatedItems[index] = validValue;

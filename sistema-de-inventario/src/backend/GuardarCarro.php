@@ -1,16 +1,16 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Origin: *"); // Permite qualquer origem
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Métodos permitidos
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-// Trata preflight (requisições OPTIONS)
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204); // Sem conteúdo
+    http_response_code(204); 
     exit();
 }
 
-// Configuração do banco de dados
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -24,21 +24,19 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Decodifica o corpo da requisição
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
-    // Inicializa as variáveis somente se os dados forem válidos
-    $modelo = $data["title"] ?? null; // Nome do carro
-    $descricao = $data["description"] ?? null; // Descrição do carro
-    $kms = isset($data["items"][0]) ? floatval($data["items"][0]) : null; // Km's
-    $tipo = $data["items"][1] ?? null; // Tipo de combustível
-    $ano = isset($data["items"][2]) ? intval($data["items"][2]) : null; // Ano
-    $marca = $data["items"][3] ?? null; // Marca
-    $preco = isset($data["items"][4]) ? floatval($data["items"][4]) : null; // Preço
-    $image = $data["image"] ?? null; // URL da imagem
+    $modelo = $data["title"] ?? null; 
+    $descricao = $data["description"] ?? null; 
+    $kms = isset($data["items"][0]) ? floatval($data["items"][0]) : null; 
+    $tipo = $data["items"][1] ?? null;
+    $ano = isset($data["items"][2]) ? intval($data["items"][2]) : null;
+    $marca = $data["items"][3] ?? null; 
+    $preco = isset($data["items"][4]) ? floatval($data["items"][4]) : null; 
+    $image = $data["image"] ?? null;
 
-    // Valida se todos os campos obrigatórios foram preenchidos
+
     if (!$modelo || !$descricao || !$kms || !$tipo || !$ano || !$marca || !$preco || !$image) {
         http_response_code(400);
         echo json_encode([
@@ -48,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
         exit();
     }
 
-    // Prepara a query SQL para inserção
-    $sql = "INSERT INTO carros (modelo, descricao, kms, tipo, ano, marca, preco, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $sql = "INSERT INTO carros (modelo, Descricao, Km, Tipo, Ano, Marca, Preco, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssdsisss", $modelo, $descricao, $kms, $tipo, $ano, $marca, $preco, $image);
 
@@ -79,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
 
     $stmt->close();
 } else {
-    // Responde apropriadamente se a requisição não for válida
+   
     http_response_code(400);
     echo json_encode([
         "status" => "error",
