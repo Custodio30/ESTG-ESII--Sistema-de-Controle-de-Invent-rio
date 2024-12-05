@@ -19,6 +19,7 @@ const ListarCarros: React.FC = () => {
   const [cards, setCards] = useState<CardData[]>([]); 
   const [loading, setLoading] = useState<boolean>(true); 
   const [error, setError] = useState<string | null>(null); 
+  
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -28,7 +29,7 @@ const ListarCarros: React.FC = () => {
       } catch (err) {
         setError("Erro ao carregar os dados.");
       } finally {
-        setLoading(false);
+        setLoading(false);   
       }
     };
 
@@ -37,6 +38,9 @@ const ListarCarros: React.FC = () => {
 
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
+
+
+  
 
   return (
     <div className="card-container ListarCarrosContainer">

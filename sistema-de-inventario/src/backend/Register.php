@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
     $isLoginMode = $data["isLoginMode"];
 
     if ($isLoginMode) {
-        $sql = "SELECT nome, password FROM registo WHERE email = ?";
+        $sql = "SELECT RegistoID, nome, password FROM registo WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($retrievedName, $hashedPassword);
+        $stmt->bind_result($RegistoID, $retrievedName, $hashedPassword);
         $stmt->fetch();
 
         if ($hashedPassword && password_verify($password, $hashedPassword)) {
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
                 "status" => "success",
                 "message" => "Login bem-sucedido!",
                 "nome" => $retrievedName 
+                "RegistoID" => $RegistoID
             ]);
         } else {
             http_response_code(401);
