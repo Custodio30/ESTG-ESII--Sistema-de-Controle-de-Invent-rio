@@ -11,9 +11,9 @@ const Perfil: React.FC = () => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const registoID = localStorage.getItem("RegistoID");
 
   useEffect(() => {
-    const registoID = localStorage.getItem("RegistoID");
     console.log(registoID);
     // Simula a obtenção de dados do utilizador (API ou LocalStorage)
     const mockUser: UserProfile = {
@@ -44,7 +44,11 @@ const Perfil: React.FC = () => {
   const handleSubmit = async () => {
     if (selectedFile && user) {
       const formData = new FormData();
-      formData.append("RegistoID", "1"); // Substitua pelo ID real do utilizador logado
+    if (!registoID) {
+        alert("Erro: O ID do registro não foi encontrado.");
+        return;
+      }
+      formData.append("RegistoID", registoID);
       formData.append("Imagem", selectedFile);
 
       try {
