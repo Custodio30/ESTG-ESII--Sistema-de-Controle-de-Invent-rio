@@ -1,45 +1,57 @@
+<<<<<<< Updated upstream
 import React from "react";
 import "../Stylesheets/Perfil.css";
+=======
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Necessário para navegação
+import LoginPage from "./LoginPage";
+>>>>>>> Stashed changes
 
-type UserProfile = {
-  name: string;
-  email: string;
-  password: string;
-};
+const Perfil: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticação
+  const [theme, setTheme] = useState("light");
+  const navigate = useNavigate(); // Hook para redirecionar o usuário
 
-const UserProfileView: React.FC = () => {
-  // Simulação de dados do usuário
-  const userData: UserProfile = {
-    name: "João Silva",
-    email: "joao.silva@example.com",
-    password: "senha123", // Apenas para exibição, nunca exponha senhas reais!
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  const handleLoginRedirect = () => {
+    navigate("/login"); // Redireciona para a página de login
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Perfil do Utilizador</h1>
-      <div style={styles.profileCard}>
-        <p><strong>Nome:</strong> {userData.name}</p>
-        <p><strong>Email:</strong> {userData.email}</p>
-        <p><strong>Password:</strong> {userData.password}</p>
-      </div>
+    <div className={`${theme} bg-gray-100 dark:bg-gray-900 min-h-screen`}>
+      <header className="p-4 shadow-lg bg-white dark:bg-gray-800 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+          User Profile
+        </h1>
+        <button
+          onClick={toggleTheme}
+          className="p-2 bg-gray-300 dark:bg-gray-700 rounded-md text-gray-800 dark:text-gray-200"
+        >
+          Toggle {theme === "light" ? "Dark" : "Light"} Mode
+        </button>
+      </header>
+      <main className="p-6">
+        {!isAuthenticated ? (
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              You are not logged in.
+            </p>
+            <button
+              onClick={handleLoginRedirect}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+              Go to Login Page
+            </button>
+          </div>
+        ) : (
+          <LoginPage />
+        )}
+      </main>
     </div>
   );
 };
 
-const styles = {
-  container: {
-    padding: "20px",
-    fontFamily: "Arial, sans-serif",
-    maxWidth: "400px",
-    margin: "0 auto",
-  },
-  profileCard: {
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    padding: "15px",
-    backgroundColor: "#f9f9f9",
-  },
-};
-
-export default UserProfileView;
+export default Perfil;
