@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "../Stylesheets/CarModal.css";
+import "../Stylesheets/CarAdicionar.css";
 
 interface CarModalProps {
   isVisible: boolean;
   onClose: () => void;
 }
 
-const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
+const CarroGuardar: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
   const [carData, setCarData] = useState({
     image: "", // URL da imagem
     title: "",
@@ -72,17 +72,17 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="modal show d-block">
-      <div className="modal-dialog modal-dialog-centered modal-lg">
-        <div className="modal-content">
+    <div className="modal show d-block CarroGuardarModal">
+      <div className="modal-dialog modal-dialog-centered modal-lg CarroGuardarModalDialog">
+        <div className="modal-content CarroGuardarModelContent">
           <div className="modal-header">
             <h5 className="modal-title">Editar Card</h5>
-            <button type="button" className="btn-close" onClick={onClose} aria-label="Fechar"></button>
+            <button type="button" className="btn-close BtnCloseCarroGuardar" onClick={onClose} aria-label="Fechar"></button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body CarroGuardarModalBody">
             <div className="card">
               <div
-                className="card-img-top-container mb-3"
+                className="card-img-top-container mb-3 CarroGuardarImagemTopContainer"
                 style={{
                   backgroundColor: isImageValid ? "transparent" : "#e1e1e1",
                   height: "300px",
@@ -178,7 +178,7 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
               </div>
             </div>
           </div>
-          <div className="modal-footer">
+          <div className="modal-footer CarroGuardarModelFooter">
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Cancelar
             </button>
@@ -192,4 +192,4 @@ const CarModal: React.FC<CarModalProps> = ({ isVisible, onClose }) => {
   );
 };
 
-export default CarModal;
+export default CarroGuardar;

@@ -1,16 +1,16 @@
 // src/components/LandingPage.tsx
 import React, { useEffect, useState, useRef } from "react";
 import "../Stylesheets/LandingPage.css";
-import CarModal from "./CarModal";
+import CarroGuardar from "./CarroGuardar";
 import ChatBot from "./ChatBot";
-import CardModal from "./CardModal";
+import ListarCarros from "./ListarCarros";
 
 
 const LandingPage: React.FC = () => {
   const [nome, setNome] = useState<string>("Usuário"); // Valor padrão
   const [mostrarCursor, setMostrarCursor] = useState(true); // Controla o cursor
   const [mostrarNavbar, setMostrarNavbar] = useState(false);
-  const [mostrarBotao, setMostrarBotao] = useState(false);
+  const [mostrarWebsite, setMostrarWebsite] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
 
   const handleAbrirModal = () => setMostrarModal(true);
@@ -27,8 +27,8 @@ const LandingPage: React.FC = () => {
     const handleAnimationEnd = () => {
       console.log("Animação terminou");
       setMostrarCursor(false); // Remove o cursor quando a animação terminar
+      setMostrarWebsite(true);
       setMostrarNavbar(true);
-      setMostrarBotao(true);
       console.log("Mostrar Navbar:", true);
     };
 
@@ -48,13 +48,13 @@ const LandingPage: React.FC = () => {
   return (
     <div>
       <div>
-        {mostrarBotao && (
+        {mostrarWebsite && (
           <i className="bi bi-plus Mais" onClick={handleAbrirModal}></i>
         )}
       </div>
 
-      <CarModal isVisible={mostrarModal} onClose={handleFecharModal} />
-
+      <CarroGuardar isVisible={mostrarModal} onClose={handleFecharModal} />
+      {mostrarWebsite && (<ListarCarros />)}
       {mostrarNavbar && (
         <div className="NavContainer">
           <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -101,7 +101,6 @@ const LandingPage: React.FC = () => {
         >
           Bem-Vindo {nome}
         </h1>
-        <CardModal />
         <ChatBot />
       </div>
     </div>
