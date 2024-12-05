@@ -1,1 +1,17 @@
+Defect Density: Esta métrica ajuda nos a medir a qualidade do sistema ao avaliar a quantidade de defeitos encontrados por unidade de código. Isso é essencial para garantir que o sistema de inventário funcione sem falhas e seja confiável.
 
+
+Cyclomatic Complexity: Esta métrica mede nos a complexidade lógica do código, indicando quão difícil é testar ou manter o sistema. É relevante para garantir que o sistema de inventário seja escalável e fácil de modificar à medida que os requisitos mudam.
+
+
+Como aplicámos as métricas?
+
+Defect Density:
+
+  Durante o desenvolvimento do sistema, monitore o número de defeitos encontrados em relação ao tamanho do código (por exemplo, defeitos por 1.000 linhas de código).
+Use ferramentas de rastreamento de bugs e implemente revisões regulares de código para identificar problemas cedo, garantindo a qualidade do software.
+
+Cyclomatic Complexity:
+
+  Calcule a complexidade lógica das funções do sistema para entender a quantidade de caminhos independentes que o programa pode seguir.
+Isso ajuda a identificar partes do sistema que são difíceis de testar ou modificar, promovendo um design mais modular e fácil de manter.
