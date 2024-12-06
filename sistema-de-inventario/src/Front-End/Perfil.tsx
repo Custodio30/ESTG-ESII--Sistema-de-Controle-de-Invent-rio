@@ -11,24 +11,25 @@ const Perfil: React.FC = () => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [newFieldValue, setNewFieldValue] = useState<string>("");
+
   const registoID = localStorage.getItem("RegistoID");
 
   useEffect(() => {
-    console.log(registoID);
-    // Simula a obtenção de dados do utilizador (API ou LocalStorage)
     const mockUser: UserProfile = {
       email: "usuario@example.com",
       contact: "+351 912 345 678",
+      profilePicture: "placeholder.png", // URL da imagem inicial
     };
     setUser(mockUser);
   }, []);
 
   useEffect(() => {
-    // Gera um preview da imagem quando o ficheiro é selecionado
+    // Atualiza o preview da imagem quando o arquivo é selecionado
     if (selectedFile) {
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreview(objectUrl);
-
       return () => URL.revokeObjectURL(objectUrl); // Cleanup do URL
     }
     setPreview(null);
@@ -44,24 +45,20 @@ const Perfil: React.FC = () => {
   const handleSubmit = async () => {
     if (selectedFile && user) {
       const formData = new FormData();
-    if (!registoID) {
+      if (!registoID) {
         alert("Erro: O ID do registro não foi encontrado.");
         return;
       }
       formData.append("RegistoID", registoID);
       formData.append("Imagem", selectedFile);
-
       try {
         const response = await fetch("http://localhost/backend/ImagemUpdate.php", {
           method: "POST",
           body: formData,
         });
-
         if (response.ok) {
           const data = await response.json();
           alert(data.message);
-
-          // Atualiza a URL da imagem no estado do utilizador
           setUser({
             ...user,
             profilePicture: `http://localhost/${data.profile_image}`,
@@ -76,16 +73,78 @@ const Perfil: React.FC = () => {
     }
   };
 
+  const handleEdit = (field: string) => {
+    setEditingField(field);
+    setNewFieldValue(user ? user[field as keyof UserProfile] as string : "");
+  };
+
+  const handleSave = () => {
+    if (user && editingField) {
+      setUser({ ...user, [editingField]: newFieldValue });
+      setEditingField(null);
+    }
+  };
+
+  const handleCancel = () => {
+    setEditingField(null);
+  };
+
   return (
     <div className="perfil-container">
       <h1 className="perfil-title">Perfil do Utilizador</h1>
       {user ? (
         <div className="perfil-card">
           <p>
-            <strong>Email:</strong> {user.email}
+            <strong>Email:</strong>{" "}
+            {editingField === "email" ? (
+              <input
+                type="text"
+                value={newFieldValue}
+                onChange={(e) => setNewFieldValue(e.target.value)}
+                className="perfil-edit-input"
+              />
+            ) : (
+              user.email
+            )}
+            <button
+              className="perfil-edit-btn"
+              onClick={() =>
+                editingField === "email" ? handleSave() : handleEdit("email")
+              }
+            >
+              {editingField === "email" ? "Salvar" : "Mudar"}
+            </button>
+            {editingField === "email" && (
+              <button className="perfil-cancel-btn" onClick={handleCancel}>
+                Cancelar
+              </button>
+            )}
           </p>
           <p>
-            <strong>Contacto:</strong> {user.contact}
+            <strong>Contacto:</strong>{" "}
+            {editingField === "contact" ? (
+              <input
+                type="text"
+                value={newFieldValue}
+                onChange={(e) => setNewFieldValue(e.target.value)}
+                className="perfil-edit-input"
+              />
+            ) : (
+              user.contact
+            )}
+            <button
+              className="perfil-edit-btn"
+              onClick={() =>
+                editingField === "contact" ? handleSave() : handleEdit("contact")
+              }
+            >
+              {editingField === "contact" ? "Salvar" : "Mudar"}
+            </button>
+            {editingField === "contact" && (
+              <button className="perfil-cancel-btn" onClick={handleCancel}>
+                Cancelar
+              </button>
+            )}
           </p>
           <div className="perfil-image-container">
             <img
