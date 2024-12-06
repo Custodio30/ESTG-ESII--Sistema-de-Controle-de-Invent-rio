@@ -1,0 +1,39 @@
+/* Estilos da página inicial */
+.pagina-inicial {
+    position: relative;
+    height: 98vh; /* Altura ocupa toda a tela */
+    width: 100vw; /* Largura ocupa toda a tela */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .NavBarPaginaInicial {
+    position: absolute;
+    top: 20px; /* Espaçamento do topo */
+    left: 20px; /* Espaçamento da esquerda */
+    z-index: 10; /* Mantém o navbar acima da imagem */
+    background: rgba(255, 255, 255, 0.8); /* Fundo translúcido */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+  }
+  
+  .paginainicial-imagem {
+    width: 100vw; /* 100% da largura da janela */
+    height: 100vh; /* 100% da altura da janela */
+    background-image: url('../../public/Images/ImagemFundo.png');
+    background-size: cover; /* Para cobrir toda a área */
+    background-position: center;
+    background-repeat: no-repeat; /* Evitar repetições */
+    margin: 0; /* Remove margens internas/externas */
+    padding: 0; /* Remove paddings internos */
+}
+  
+  
+  .paginainicial-imagem img {
+    width: 100%; /* Mantém a largura ocupando todo o espaço */
+    height: auto; /* Ajusta a altura automaticamente */
+    object-fit: contain; /* Garante que toda a imagem será visível */
+    display: block; /* Remove qualquer espaçamento inesperado */
+  }
+  

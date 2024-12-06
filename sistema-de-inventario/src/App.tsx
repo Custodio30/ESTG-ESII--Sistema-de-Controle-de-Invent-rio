@@ -4,6 +4,7 @@ import LoginPage from '../src/Front-End/LoginPage';
 import LandingPage from '../src/Front-End/LandingPage';
 import CarModel from '../src/Front-End/CarModel';
 import Perfil from '../src/Front-End/Perfil';
+import PaginaInicial from '../src/Front-End/PaginaInicial';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path="/CarModel" element={<CarModel />} />
         <Route path="/Perfil" element={<Perfil />} />
         <Route path="/landing" element={<LandingPage />} />
+        <Route path="/PaginaInicial" element={<PaginaInicial />} />
       </Routes>
     </Router>
   );
