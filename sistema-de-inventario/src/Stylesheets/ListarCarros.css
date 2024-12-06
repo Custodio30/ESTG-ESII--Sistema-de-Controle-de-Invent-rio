@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 
 .ListarCarrosContainer {
   margin: 0 auto; /* Centraliza */

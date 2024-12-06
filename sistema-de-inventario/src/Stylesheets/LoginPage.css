@@ -1,4 +1,4 @@
-/*body {
+.BodyLoginPage {
   margin: 0;
   display: flex;
   align-items: flex-end;
@@ -6,7 +6,6 @@
   height: 100vh;
   background-color: #f5f5f5;
 }
-  */
 
 /* Estilos gerais do Container */
 .card-container {

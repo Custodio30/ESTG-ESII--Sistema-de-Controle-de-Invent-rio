@@ -3,11 +3,11 @@ import '../StyleSheets/PaginaInicial.css'; // Estilos customizados
 
 const PaginaInicial: React.FC = () => {
   return (
+    <body className="paginainicial-imagem">
     <div className="pagina-inicial">
-      <div className="paginainicial-imagem">
+      <div className="">
       <nav className="navbar navbar-expand-lg bg-body-tertiary NavBarPaginaInicial">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Navbar</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -16,29 +16,28 @@ const PaginaInicial: React.FC = () => {
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
+            >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <a className="nav-link NavBarItemPaginaInicial" aria-current="page" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
+                <a className="nav-link NavBarItemPaginaInicial" href="#">Features</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
+                <a className="nav-link NavBarItemPaginaInicial" href="#">Pricing</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
+
             </ul>
           </div>
         </div>
       </nav>
       </div>
     </div>
+              </body>
   );
 };
 

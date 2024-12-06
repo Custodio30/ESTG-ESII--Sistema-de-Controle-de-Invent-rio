@@ -46,6 +46,7 @@ const LandingPage: React.FC = () => {
 
 
   return (
+    <body className="BodyLandingPage">
     <div>
       <div>
         {mostrarWebsite && (
@@ -104,6 +105,7 @@ const LandingPage: React.FC = () => {
         <ChatBot />
       </div>
     </div>
+    </body>
   );
 };
 

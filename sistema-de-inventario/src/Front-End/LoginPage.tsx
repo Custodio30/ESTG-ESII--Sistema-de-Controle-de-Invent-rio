@@ -48,6 +48,7 @@ const LoginPage: React.FC = () => {
 
 
   return (
+    <body className="BodyLoginPage">
     <div>
       <div className="card-container">
         <div className="card">
@@ -100,6 +101,7 @@ const LoginPage: React.FC = () => {
     </div>
 
     </div>
+  </body>
   );
 };
 
