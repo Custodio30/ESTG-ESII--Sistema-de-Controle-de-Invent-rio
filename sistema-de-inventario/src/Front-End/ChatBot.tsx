@@ -1,4 +1,5 @@
 // Front-End/ChatBot.tsx
+
 import React, { useState } from "react";
 import "../Stylesheets/ChatBot.css";
 import { invokeCohere } from "../CohereApi";
@@ -10,14 +11,27 @@ const ChatBot: React.FC = () => {
 
   const handleSendMessage = async () => {
     if (!userInput.trim()) return;
+
     setMessages((prev) => [...prev, { text: userInput, sender: "user" }]);
+
     try {
       const aiResponse = await invokeCohere(userInput);
       setMessages((prev) => [...prev, { text: aiResponse, sender: "ai" }]);
     } catch {
       setMessages((prev) => [...prev, { text: "Error fetching AI response.", sender: "ai" }]);
     }
+
     setUserInput("");
+  };
+
+  const handlePredefinedQuestion = async (question: string) => {
+    setMessages((prev) => [...prev, { text: question, sender: "user" }]);
+    try {
+      const aiResponse = await invokeCohere(question);
+      setMessages((prev) => [...prev, { text: aiResponse, sender: "ai" }]);
+    } catch {
+      setMessages((prev) => [...prev, { text: "Error fetching AI response.", sender: "ai" }]);
+    }
   };
 
   return (
@@ -46,10 +60,26 @@ const ChatBot: React.FC = () => {
               <div className="ChatBot-Help">
                 <h2>Olá 👋, como podemos ajudar?</h2>
                 <ul>
-                  <li><a href="#free-spins"> Como posso verificar o sistema de inventário?</a></li>
-                  <li><a href="#user-id"> Como encontro o ID do carro?</a></li>
-                  <li><a href="#deposit-methods"> Como adiciono carros ao sistema?</a></li>
-                  <li><a href="#gift-cards"> Como faço o meu sistema de inventário?</a></li>
+                  <li>
+                    <button onClick={() => handlePredefinedQuestion("Como posso verificar o sistema de inventário?")}>
+                      Como posso verificar o sistema de inventário?
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => handlePredefinedQuestion("Como encontro o ID do carro?")}>
+                      Como encontro o ID do carro?
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => handlePredefinedQuestion("Como adiciono carros ao sistema?")}>
+                      Como adiciono carros ao sistema?
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => handlePredefinedQuestion("Como faço o meu sistema de inventário?")}>
+                      Como faço o meu sistema de inventário?
+                    </button>
+                  </li>
                 </ul>
               </div>
             )}
@@ -60,9 +90,7 @@ const ChatBot: React.FC = () => {
                 {messages.map((msg, index) => (
                   <div
                     key={index}
-                    className={`ChatBot-Message ${
-                      msg.sender === "user" ? "UserMessage" : "AIMessage"
-                    }`}
+                    className={`ChatBot-Message ${msg.sender === "user" ? "UserMessage" : "AIMessage"}`}
                   >
                     {msg.text}
                   </div>
