@@ -22,7 +22,7 @@ const Perfil: React.FC = () => {
     const mockUser: UserProfile = {
       email: "exemplo@gmail.com",
       contact: "123456789",
-      gender: "Escolha o seu género.", // Valor inicial para o gênero
+      gender: "Não especificado", // Valor inicial para o gênero
       profilePicture: "placeholder.png", // URL da imagem inicial
     };
     setUser(mockUser);
@@ -52,9 +52,7 @@ const Perfil: React.FC = () => {
       }
     } else if (field === "contact") {
       if (!/^\d{9}$/.test(value)) {
-        setErrorMessage(
-          "O contacto deve conter exatamente 9 números e sem letras."
-        );
+        setErrorMessage("O contacto deve conter exatamente 9 números e sem letras.");
         return false;
       }
     }
@@ -87,13 +85,12 @@ const Perfil: React.FC = () => {
   return (
     <div className="perfil-container">
       <h1 className="perfil-title">Perfil do Utilizador</h1>
-      {user ? (
-        <div className="perfil-card">
-          {successMessage && (
-            <p className="perfil-success-message">{successMessage}</p>
-          )}
+      {user && (
+        <div>
+          {successMessage && <p className="perfil-success-message">{successMessage}</p>}
           {errorMessage && <p className="perfil-error-message">{errorMessage}</p>}
-          <p>
+
+          <div>
             <strong>Email:</strong>{" "}
             {editingField === "email" ? (
               <input
@@ -106,20 +103,15 @@ const Perfil: React.FC = () => {
               user.email
             )}
             <button
-              className="perfil-edit-btn"
               onClick={() =>
                 editingField === "email" ? handleSave() : handleEdit("email")
               }
             >
-              {editingField === "email" ? "Salvar" : "Mudar"}
+              {editingField === "email" ? "Salvar" : "Editar"}
             </button>
-            {editingField === "email" && (
-              <button className="perfil-cancel-btn" onClick={handleCancel}>
-                Cancelar
-              </button>
-            )}
-          </p>
-          <p>
+          </div>
+
+          <div>
             <strong>Contacto:</strong>{" "}
             {editingField === "contact" ? (
               <input
@@ -132,20 +124,15 @@ const Perfil: React.FC = () => {
               user.contact
             )}
             <button
-              className="perfil-edit-btn"
               onClick={() =>
                 editingField === "contact" ? handleSave() : handleEdit("contact")
               }
             >
-              {editingField === "contact" ? "Salvar" : "Mudar"}
+              {editingField === "contact" ? "Salvar" : "Editar"}
             </button>
-            {editingField === "contact" && (
-              <button className="perfil-cancel-btn" onClick={handleCancel}>
-                Cancelar
-              </button>
-            )}
-          </p>
-          <p>
+          </div>
+
+          <div>
             <strong>Género:</strong>{" "}
             {editingField === "gender" ? (
               <select
@@ -157,45 +144,26 @@ const Perfil: React.FC = () => {
                 <option value="feminino">Feminino</option>
               </select>
             ) : (
-              user.gender || "Não especificado"
+              user.gender
             )}
             <button
-              className="perfil-edit-btn"
               onClick={() =>
                 editingField === "gender" ? handleSave() : handleEdit("gender")
               }
             >
-              {editingField === "gender" ? "Salvar" : "Mudar"}
+              {editingField === "gender" ? "Salvar" : "Editar"}
             </button>
-            {editingField === "gender" && (
-              <button className="perfil-cancel-btn" onClick={handleCancel}>
-                Cancelar
-              </button>
-            )}
-          </p>
-          <div className="perfil-image-container">
+          </div>
+
+          <div>
             <img
-              src={user.profilePicture || preview || "placeholder.png"}
+              src={preview || user.profilePicture || "placeholder.png"}
               alt="Foto de Perfil"
               className="perfil-image"
             />
-          </div>
-          <div className="perfil-upload">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="perfil-input"
-            />
-            {preview && (
-              <button onClick={handleSave} className="perfil-submit-btn">
-                Submeter Foto
-              </button>
-            )}
+            <input type="file" accept="image/*" onChange={handleFileChange} />
           </div>
         </div>
-      ) : (
-        <p>Carregando...</p>
       )}
     </div>
   );
