@@ -2,28 +2,32 @@ import React, { useState, useEffect } from "react";
 import "../Stylesheets/Perfil.css";
 
 interface UserProfile {
+  phone: string;
+  username: string;
+  gender?: string;
   email: string;
-  contact: string;
-  gender?: string; // Novo campo de gênero
-  profilePicture?: string; // URL da imagem de perfil
+  password?: string;
+  address: string;
+  profilePicture?: string;
 }
 
 const Perfil: React.FC = () => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [editingField, setEditingField] = useState<string | null>(null);
-  const [newFieldValue, setNewFieldValue] = useState<string>("");
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // Novo estado para mensagens de erro
-  const registoID = localStorage.getItem("RegistoID");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false); // Estado para exibir ou ocultar a senha
 
   useEffect(() => {
+    // Mock User Data
     const mockUser: UserProfile = {
+      phone: "Introduza o seu contacto",
+      username: "Introduza o seu nome de utilizador",
+      género: "Masculino",
       email: "exemplo@gmail.com",
-      contact: "123456789",
-      gender: "Não especificado", // Valor inicial para o gênero
-      profilePicture: "placeholder.png", // URL da imagem inicial
+      password: "***********",
+      address: "Introduza a sua morada",
+      profilePicture: "placeholder.png",
     };
     setUser(mockUser);
   }, []);
@@ -32,138 +36,118 @@ const Perfil: React.FC = () => {
     if (selectedFile) {
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreview(objectUrl);
-      return () => URL.revokeObjectURL(objectUrl); // Cleanup do URL
+      return () => URL.revokeObjectURL(objectUrl);
     }
     setPreview(null);
   }, [selectedFile]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    if (user) {
+      setUser({ ...user, [e.target.name]: e.target.value });
     }
-  };
-
-  const validateField = (field: string, value: string): boolean => {
-    if (field === "email") {
-      if (!value.includes("@gmail.com")) {
-        setErrorMessage("O email deve conter '@gmail.com'.");
-        return false;
-      }
-    } else if (field === "contact") {
-      if (!/^\d{9}$/.test(value)) {
-        setErrorMessage("O contacto deve conter exatamente 9 números e sem letras.");
-        return false;
-      }
-    }
-    setErrorMessage(null);
-    return true;
   };
 
   const handleSave = () => {
-    if (user && editingField) {
-      const isValid = validateField(editingField, newFieldValue);
-      if (isValid) {
-        setUser({ ...user, [editingField]: newFieldValue });
-        setEditingField(null);
-        setSuccessMessage("Alteração realizada com sucesso!");
-        setTimeout(() => setSuccessMessage(null), 3000);
-      }
-    }
-  };
-
-  const handleEdit = (field: string) => {
-    setEditingField(field);
-    setNewFieldValue(user ? (user[field as keyof UserProfile] as string) : "");
-  };
-
-  const handleCancel = () => {
-    setEditingField(null);
-    setErrorMessage(null);
+    console.log("Dados salvos:", user);
+    setIsEditing(false);
   };
 
   return (
     <div className="perfil-container">
-      <h1 className="perfil-title">Perfil do Utilizador</h1>
-      {user && (
-        <div>
-          {successMessage && <p className="perfil-success-message">{successMessage}</p>}
-          {errorMessage && <p className="perfil-error-message">{errorMessage}</p>}
-
-          <div>
-            <strong>Email:</strong>{" "}
-            {editingField === "email" ? (
-              <input
-                type="text"
-                value={newFieldValue}
-                onChange={(e) => setNewFieldValue(e.target.value)}
-                className="perfil-edit-input"
-              />
-            ) : (
-              user.email
-            )}
-            <button
-              onClick={() =>
-                editingField === "email" ? handleSave() : handleEdit("email")
+      <h1 className="perfil-title">Profile</h1>
+      {user ? (
+        <div className="perfil-card">
+          <div className="perfil-image-container">
+            <img
+              src={preview || user.profilePicture || "placeholder.png"}
+              alt="Profile"
+              className="perfil-image"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) =>
+                setSelectedFile(e.target.files ? e.target.files[0] : null)
               }
-            >
-              {editingField === "email" ? "Salvar" : "Editar"}
-            </button>
+              className="perfil-input"
+            />
           </div>
 
-          <div>
-            <strong>Contacto:</strong>{" "}
-            {editingField === "contact" ? (
+          <form className="perfil-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="perfil-row">
+              <label>Contacto</label>
               <input
                 type="text"
-                value={newFieldValue}
-                onChange={(e) => setNewFieldValue(e.target.value)}
-                className="perfil-edit-input"
+                name="phone"
+                value={user.phone}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
               />
-            ) : (
-              user.contact
-            )}
-            <button
-              onClick={() =>
-                editingField === "contact" ? handleSave() : handleEdit("contact")
-              }
-            >
-              {editingField === "contact" ? "Salvar" : "Editar"}
-            </button>
-          </div>
-
-          <div>
-            <strong>Género:</strong>{" "}
-            {editingField === "gender" ? (
+            </div>
+            <div className="perfil-row">
+              <label>Nome de Utilizador</label>
+              <input
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
+              />
+            </div>
+            <div className="perfil-row">
+              <label>Género</label>
               <select
-                value={newFieldValue}
-                onChange={(e) => setNewFieldValue(e.target.value)}
-                className="perfil-edit-select"
+                name="Género"
+                value={user.género}
+                onChange={handleInputChange}
+                disabled={!isEditing}
               >
                 <option value="masculino">Masculino</option>
                 <option value="feminino">Feminino</option>
               </select>
-            ) : (
-              user.gender
-            )}
-            <button
-              onClick={() =>
-                editingField === "gender" ? handleSave() : handleEdit("gender")
-              }
-            >
-              {editingField === "gender" ? "Salvar" : "Editar"}
-            </button>
-          </div>
-
-          <div>
-            <img
-              src={preview || user.profilePicture || "placeholder.png"}
-              alt="Foto de Perfil"
-              className="perfil-image"
-            />
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-          </div>
+            </div>
+            <div className="perfil-row password-row">
+              <label>Password</label>
+              <div className="password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={user.password}
+                  onChange={handleInputChange}
+                  readOnly={!isEditing}
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "👁️‍🗨️" : "👁️"}
+                </button>
+              </div>
+            </div>
+            <div className="perfil-row">
+              <label>Morada</label>
+              <input
+                type="text"
+                name="address"
+                value={user.address}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
+              />
+            </div>
+            <div className="perfil-row edit-button-container">
+              <button
+                type="button"
+                onClick={() => setIsEditing(!isEditing)}
+                className="perfil-edit-button"
+              >
+                {isEditing ? "Salvar" : "Editar"}
+              </button>
+            </div>
+          </form>
         </div>
+      ) : (
+        <p>Loading user data...</p>
       )}
     </div>
   );

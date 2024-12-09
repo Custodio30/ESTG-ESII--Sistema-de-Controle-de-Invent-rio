@@ -1,12 +1,9 @@
 .perfil-container {
   font-family: "Arial, sans-serif";
-  max-width: 500px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f4f4;
-  background-image: url('https://wallpapers.com/images/hd/plain-red-background-v98es2x0z1wqum24.jpg') !important;
-  background-size: cover; /* Faz com que a imagem cubra toda a área */
-  background-position: center; /* Centraliza a imagem */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -14,26 +11,19 @@
 .perfil-title {
   text-align: center;
   font-size: 24px;
+  margin-bottom: 20px;
   color: #333;
 }
 
 .perfil-card {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-}
-
-.perfil-card p {
-  font-size: 16px;
-  color: #555;
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .perfil-image-container {
   text-align: center;
-  margin: 15px 0;
+  margin-bottom: 20px;
 }
 
 .perfil-image {
@@ -44,66 +34,89 @@
   object-fit: cover;
 }
 
-.perfil-upload {
-  margin-top: 15px;
+.perfil-input {
+  margin-top: 10px;
+}
+
+.perfil-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.perfil-row {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative; /* Necessário para posicionar o ícone de olho */
 }
 
-.perfil-input {
-  margin-bottom: 10px;
-}
-
-.perfil-submit-btn {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.perfil-submit-btn:hover {
-  background-color: #0056b3;
-}
-
-.perfil-edit-btn,
-.perfil-cancel-btn {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.perfil-row label {
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  margin-bottom: 5px;
+  color: #555;
 }
 
-.perfil-edit-btn:hover {
-  background-color: #0056b3;
-}
-
-.perfil-cancel-btn {
-  background-color: #dc3545;
-}
-
-.perfil-cancel-btn:hover {
-  background-color: #b02a37;
-}
-
-.perfil-edit-input {
-  margin-left: 10px;
-  padding: 5px;
+.perfil-row input,
+.perfil-row select {
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
   font-size: 14px;
+  color: #333;
+  width: 100%;
 }
 
-.perfil-loading {
-  text-align: center;
-  color: #888;
-  font-size: 18px;
+.perfil-row input[readonly],
+.perfil-row select:disabled {
+  background-color: #eee;
+  color: #999;
+}
+
+/* Ícone de olho na senha */
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 40px; /* Espaço extra para o botão do olho */
+}
+
+.password-container .password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}
+
+.password-container .password-toggle:hover {
+  color: #333;
+}
+
+/* Botão "Edit" menor e centralizado */
+.perfil-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.perfil-button {
+  padding: 8px 16px; /* Reduzi o tamanho do botão */
+  font-size: 14px; /* Reduzi o tamanho da fonte */
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.perfil-button:hover {
+  background-color: #0056b3;
 }
