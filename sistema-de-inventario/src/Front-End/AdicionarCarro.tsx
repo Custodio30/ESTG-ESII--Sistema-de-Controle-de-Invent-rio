@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../Stylesheets/AdicionarCarro.css";
 
-
 const AdicionarCarro: React.FC = ({}) => {
   const [carData, setCarData] = useState({
     image: "", // URL da imagem
@@ -13,7 +12,9 @@ const AdicionarCarro: React.FC = ({}) => {
   const [isImageValid, setIsImageValid] = useState(false);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
     index?: number
   ) => {
     const { name, value } = e.target;
@@ -22,9 +23,10 @@ const AdicionarCarro: React.FC = ({}) => {
       setCarData((prevData) => {
         const updatedItems = [...prevData.items];
 
-        
         if (index === 0 || index === 4) {
-          const validValue = value.match(/^\d*\.?\d{0,3}$/) ? value : prevData.items[index];
+          const validValue = value.match(/^\d*\.?\d{0,3}$/)
+            ? value
+            : prevData.items[index];
           updatedItems[index] = validValue;
         } else {
           updatedItems[index] = value;
@@ -46,7 +48,7 @@ const AdicionarCarro: React.FC = ({}) => {
   };
 
   const handleSave = () => {
-    fetch('http://localhost/backend/GuardarCarro.php', {
+    fetch("http://localhost/backend/GuardarCarro.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,27 +73,15 @@ const AdicionarCarro: React.FC = ({}) => {
         <div className="modal-content CarroGuardarModelContent">
           <div className="modal-header">
             <h5 className="modal-title">Editar Card</h5>
-            <button type="button" className="btn-close BtnCloseCarroGuardar" aria-label="Fechar"></button>
+            <button
+              type="button"
+              className="btn-close BtnCloseCarroGuardar"
+              aria-label="Fechar"
+            ></button>
           </div>
           <div className="modal-body CarroGuardarModalBody">
-            <div className="card">
-              <div
-                className="card-img-top-container mb-3 CarroGuardarImagemTopContainer"
-                style={{
-                  backgroundColor: isImageValid ? "transparent" : "#e1e1e1",
-                  height: "300px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {isImageValid ? (
-                  <img src={carData.image} alt="Card preview" className="card-img-top" />
-                ) : (
-                  <span>Imagem não disponível</span>
-                )}
-              </div>
-              <div className="card-body">
+            <div className="card AdicionarCarroCard">
+              <div className="form-container AdicionarCarroFormContainer">
                 <input
                   type="text"
                   className="form-control mb-2"
@@ -99,7 +89,7 @@ const AdicionarCarro: React.FC = ({}) => {
                   value={carData.title}
                   onChange={handleInputChange}
                   placeholder="Modelo do Carro"
-                />
+                  />
                 <textarea
                   className="form-control"
                   name="description"
@@ -107,60 +97,58 @@ const AdicionarCarro: React.FC = ({}) => {
                   value={carData.description}
                   onChange={handleInputChange}
                   placeholder="Descrição"
-                />
-              </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={carData.items[0]}
-                    onChange={(e) => handleInputChange(e, 0)}
-                    placeholder="Km's"
                   />
-                </li>
-                <li className="list-group-item">
-                  <select
-                    className="form-select"
-                    value={carData.items[1]}
-                    onChange={(e) => handleInputChange(e, 1)}
-                  >
-                    <option value="Gasolina">Gasolina</option>
-                    <option value="Gasoleo">Gasóleo</option>
-                    <option value="Hibrido Gasolina">Híbrido Gasolina</option>
-                    <option value="Eletrico">Elétrico</option>
-                    <option value="Gpl">Gpl</option>
-                  </select>
-                </li>
-                <li className="list-group-item">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={carData.items[2]}
-                    onChange={(e) => handleInputChange(e, 2)}
-                    placeholder="Ano"
-                  />
-                </li>
-                <li className="list-group-item">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={carData.items[3]}
-                    onChange={(e) => handleInputChange(e, 3)}
-                    placeholder="Marca"
-                  />
-                </li>
-                <li className="list-group-item">
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={carData.items[4]}
-                    onChange={(e) => handleInputChange(e, 4)}
-                    placeholder="Preço"
-                  />
-                </li>
-              </ul>
-              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={carData.items[0]}
+                      onChange={(e) => handleInputChange(e, 0)}
+                      placeholder="Km's"
+                      />
+                  </li>
+                  <li className="list-group-item">
+                    <select
+                      className="form-select"
+                      value={carData.items[1]}
+                      onChange={(e) => handleInputChange(e, 1)}
+                      >
+                      <option value="Gasolina">Gasolina</option>
+                      <option value="Gasoleo">Gasóleo</option>
+                      <option value="Hibrido Gasolina">Híbrido Gasolina</option>
+                      <option value="Eletrico">Elétrico</option>
+                      <option value="Gpl">Gpl</option>
+                    </select>
+                  </li>
+                  <li className="list-group-item">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={carData.items[2]}
+                      onChange={(e) => handleInputChange(e, 2)}
+                      placeholder="Ano"
+                      />
+                  </li>
+                  <li className="list-group-item">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={carData.items[3]}
+                      onChange={(e) => handleInputChange(e, 3)}
+                      placeholder="Marca"
+                      />
+                  </li>
+                  <li className="list-group-item">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={carData.items[4]}
+                      onChange={(e) => handleInputChange(e, 4)}
+                      placeholder="Preço"
+                      />
+                  </li>
+                </ul>
                 <input
                   type="text"
                   className="form-control"
@@ -168,7 +156,24 @@ const AdicionarCarro: React.FC = ({}) => {
                   value={carData.image}
                   onChange={handleInputChange}
                   placeholder="Insira a URL da imagem"
-                />
+                  />
+              </div>
+
+              <div
+                className="card-img-top-container mb-3 CarroGuardarImagemTopContainer"
+                style={{
+                  backgroundColor: isImageValid ? "transparent" : "#e1e1e1",
+                }}
+                >
+                {isImageValid ? (
+                  <img
+                  src={carData.image}
+                  alt="Card preview"
+                  className="card-img-top"
+                  />
+                ) : (
+                  <span>Imagem não disponível</span>
+                )}
               </div>
             </div>
           </div>
@@ -176,7 +181,11 @@ const AdicionarCarro: React.FC = ({}) => {
             <button type="button" className="btn btn-secondary">
               Cancelar
             </button>
-            <button type="button" className="btn btn-primary" onClick={handleSave}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSave}
+            >
               Salvar
             </button>
           </div>

@@ -2,19 +2,36 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
 
+  .CarroGuardarModalBody .AdicionarCarroCard {
+    display: flex;
+    flex-direction: row; /* Organiza os elementos em linha (lado a lado) */
+    gap: 20px; /* Espaçamento entre imagem e inputs */
+    height: 100%;
+  }
+  
   .CarroGuardarImagemTopContainer {
-    background-color: #e1e1e1; /* Fundo cinza por padrão */
+    background-color: #e1e1e1;
     height: 300px; /* Altura fixa */
+    width: 35%; /* Metade da largura do cartão */
+    flex-shrink: 0; /* Impede que a imagem diminua ao redimensionar */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Evita que a imagem extrapole o contêiner */
+    border-radius: 8px; /* Bordas arredondadas */
   }
   
   .CarroGuardarImagemTopContainer img {
-    max-width: 100%; /* Ajusta a largura */
-    max-height: 100%; /* Ajusta a altura */
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain; /* Centraliza e mantém a proporção da imagem */
+  }
+  
+  .CarroGuardarModalBody .AdicionarCarroFormContainer {
+    flex-grow: 1; /* Faz os inputs ocuparem o restante do espaço */
+    display: flex;
+    flex-direction: column; /* Inputs organizados verticalmente */
+    gap: 15px; /* Espaçamento entre os inputs */
   }
   
   .CarroGuardarImagemTopContainer span {
@@ -23,14 +40,24 @@
   
   .CarroGuardarModalDialog {
     max-width: 100%;
-    max-height: 100%;
+    height: 100%;
+    margin: 0 !important;
   }
   
   .CarroGuardarModelContent {
     border-radius: 10px; /* Borda arredondada para o modal */
+    height: 100%;
   }
   
   .CarroGuardarModelFooter button {
     min-width: 100px; /* Tamanho mínimo para botões */
   }
   
+  .AdicionarCarroFormContainer {
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+  .CarroGuardarImagemTopContainer{
+    margin-right: 15px;
+    margin-top: 15px;
+  }
