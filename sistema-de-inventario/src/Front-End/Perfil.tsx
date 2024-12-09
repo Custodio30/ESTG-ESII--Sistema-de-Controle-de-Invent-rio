@@ -4,6 +4,7 @@ import "../Stylesheets/Perfil.css";
 interface UserProfile {
   email: string;
   contact: string;
+  gender?: string; // Novo campo de gênero
   profilePicture?: string; // URL da imagem de perfil
 }
 
@@ -13,20 +14,21 @@ const Perfil: React.FC = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [newFieldValue, setNewFieldValue] = useState<string>("");
-
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // Novo estado para mensagens de erro
   const registoID = localStorage.getItem("RegistoID");
 
   useEffect(() => {
     const mockUser: UserProfile = {
-      email: "usuario@example.com",
-      contact: "+351 912 345 678",
+      email: "exemplo@gmail.com",
+      contact: "123456789",
+      gender: "Escolha o seu género.", // Valor inicial para o gênero
       profilePicture: "placeholder.png", // URL da imagem inicial
     };
     setUser(mockUser);
   }, []);
 
   useEffect(() => {
-    // Atualiza o preview da imagem quando o arquivo é selecionado
     if (selectedFile) {
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreview(objectUrl);
@@ -42,51 +44,44 @@ const Perfil: React.FC = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    if (selectedFile && user) {
-      const formData = new FormData();
-      if (!registoID) {
-        alert("Erro: O ID do registro não foi encontrado.");
-        return;
+  const validateField = (field: string, value: string): boolean => {
+    if (field === "email") {
+      if (!value.includes("@gmail.com")) {
+        setErrorMessage("O email deve conter '@gmail.com'.");
+        return false;
       }
-      formData.append("RegistoID", registoID);
-      formData.append("Imagem", selectedFile);
-      try {
-        const response = await fetch("http://localhost/backend/ImagemUpdate.php", {
-          method: "POST",
-          body: formData,
-        });
-        if (response.ok) {
-          const data = await response.json();
-          alert(data.message);
-          setUser({
-            ...user,
-            profilePicture: `http://localhost/${data.profile_image}`,
-          });
-        } else {
-          alert("Erro ao fazer upload da imagem.");
-        }
-      } catch (error) {
-        console.error("Erro ao enviar a imagem:", error);
-        alert("Falha ao se conectar ao servidor.");
+    } else if (field === "contact") {
+      if (!/^\d{9}$/.test(value)) {
+        setErrorMessage(
+          "O contacto deve conter exatamente 9 números e sem letras."
+        );
+        return false;
+      }
+    }
+    setErrorMessage(null);
+    return true;
+  };
+
+  const handleSave = () => {
+    if (user && editingField) {
+      const isValid = validateField(editingField, newFieldValue);
+      if (isValid) {
+        setUser({ ...user, [editingField]: newFieldValue });
+        setEditingField(null);
+        setSuccessMessage("Alteração realizada com sucesso!");
+        setTimeout(() => setSuccessMessage(null), 3000);
       }
     }
   };
 
   const handleEdit = (field: string) => {
     setEditingField(field);
-    setNewFieldValue(user ? user[field as keyof UserProfile] as string : "");
-  };
-
-  const handleSave = () => {
-    if (user && editingField) {
-      setUser({ ...user, [editingField]: newFieldValue });
-      setEditingField(null);
-    }
+    setNewFieldValue(user ? (user[field as keyof UserProfile] as string) : "");
   };
 
   const handleCancel = () => {
     setEditingField(null);
+    setErrorMessage(null);
   };
 
   return (
@@ -94,6 +89,10 @@ const Perfil: React.FC = () => {
       <h1 className="perfil-title">Perfil do Utilizador</h1>
       {user ? (
         <div className="perfil-card">
+          {successMessage && (
+            <p className="perfil-success-message">{successMessage}</p>
+          )}
+          {errorMessage && <p className="perfil-error-message">{errorMessage}</p>}
           <p>
             <strong>Email:</strong>{" "}
             {editingField === "email" ? (
@@ -146,6 +145,34 @@ const Perfil: React.FC = () => {
               </button>
             )}
           </p>
+          <p>
+            <strong>Género:</strong>{" "}
+            {editingField === "gender" ? (
+              <select
+                value={newFieldValue}
+                onChange={(e) => setNewFieldValue(e.target.value)}
+                className="perfil-edit-select"
+              >
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+              </select>
+            ) : (
+              user.gender || "Não especificado"
+            )}
+            <button
+              className="perfil-edit-btn"
+              onClick={() =>
+                editingField === "gender" ? handleSave() : handleEdit("gender")
+              }
+            >
+              {editingField === "gender" ? "Salvar" : "Mudar"}
+            </button>
+            {editingField === "gender" && (
+              <button className="perfil-cancel-btn" onClick={handleCancel}>
+                Cancelar
+              </button>
+            )}
+          </p>
           <div className="perfil-image-container">
             <img
               src={user.profilePicture || preview || "placeholder.png"}
@@ -161,14 +188,14 @@ const Perfil: React.FC = () => {
               className="perfil-input"
             />
             {preview && (
-              <button onClick={handleSubmit} className="perfil-submit-btn">
+              <button onClick={handleSave} className="perfil-submit-btn">
                 Submeter Foto
               </button>
             )}
           </div>
         </div>
       ) : (
-        <p className="perfil-loading">A carregar dados...</p>
+        <p>Carregando...</p>
       )}
     </div>
   );
