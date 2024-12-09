@@ -54,13 +54,13 @@ const Perfil: React.FC = () => {
 
   return (
     <div className="perfil-container">
-      <h1 className="perfil-title">Profile</h1>
+      <h1 className="perfil-title">Perfil do Utilizador</h1>
       {user ? (
         <div className="perfil-card">
           <div className="perfil-image-container">
             <img
               src={preview || user.profilePicture || "placeholder.png"}
-              alt="Profile"
+              alt="Imagem do utilizador"
               className="perfil-image"
             />
             <input
