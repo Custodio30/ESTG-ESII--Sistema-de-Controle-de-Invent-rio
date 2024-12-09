@@ -6,56 +6,130 @@
   min-height: 100vh;
   align-items: center; 
   justify-content: center; 
-  background-color: #f5f5f5;
+  background-image: url("../../public/Images/ImagemFundo.png");
 }
 
 .BemVindo-Container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza verticalmente dentro do contêiner */
-  align-items: center; /* Centraliza horizontalmente dentro do contêiner */
-  text-align: center; /* Centraliza o texto dentro do contêiner */
-  background-color: #f5f5f5; /* Exemplo de cor de fundo */
-  width: 100%; /* Opcional: pode ser ajustado conforme necessário */
-  font-family: "Times New Roman", Times, serif; /* Fonte padrão */
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  width: fit-content;
+  font-family: "Times New Roman", Times, serif; 
+
 }
 
-.bg-body-tertiary {
-  background-color: transparent !important;
+.TopBarLandingPage.with-sidebar {
+  margin-left: 250px;
 }
 
-.Mais{
-  position: absolute; /* Permite ajustar a posição com top/left */
-  top: 10px; /* Desloca para baixo */
-  left: 10px; /* Desloca para a direita */  
-  font-size: 36px; /* Ajusta o tamanho do ícone */
-  color: #000; /* Altere para a cor desejada */
-  transition: all 1s ease-out; /* Transição suave */
-  animation: BotaoAparecimento 1s forwards; /* Animação de entrada */
-  cursor: pointer;
-}
-
-.NavContainer {
+.TopBarLandingPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #343a40; 
+  color: white;
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente os itens */
-  align-items: center; /* Centraliza verticalmente os itens */
-  position: fixed; /* Fixa no viewport */
-  bottom: 20px; /* Eleva a navbar 20px acima do rodapé */
-  right: 0; /* Garante que vá até a borda direita */
-  width: 100%; /* Ocupa toda a largura */
-  z-index: 10; /* Mantém a navbar acima de outros elementos */
-  padding: 0 20px; /* Espaçamento interno */
-  transition: all 1s ease-out; /* Transição suave */
-  animation: NavAparecimento 1s forwards; /* Animação de entrada */
+  align-items: center;
+  padding: 0 20px;
+  transition: margin-left 0.3s ease-in-out; 
 }
 
-.navbar-brand{
-  font-size: 1.8rem;
-  font-family:sans-serif;
+.Mais {
+  margin-right: 20px; 
+  font-size: 24px; 
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.Mais:hover {
+  transform: scale(1.1);
+}
+
+.DivCentralLandingPage {
+  position: absolute; 
+  top: 65px; 
+  left: 5px; 
+  right: 305px; 
+  bottom: 5px; 
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.DivCentralLandingPage.SideBarAberta {
+  margin-left: 250px; 
+  margin-right: 5px; 
+}
+.painel-direito {
+  position: fixed;
+  top: 60px; 
+  right: 0;
+  width: 300px; 
+  height: calc(100% - 60px); 
+  background-color: black;
+  color: white; 
+  padding: 20px; 
+  overflow-y: auto; 
+  z-index: 1050; 
+  border-left: 1px solid #444; 
+}
+
+.LandingPageNavBarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #343a40; /* Cor escura padrão do Bootstrap */
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1040;
+}
+
+.conteudoSideBarAberta {
+  transform: translateX(0); /* Mostrar a sidebar */
+}
+
+.conteudoSideBarFechada {
+  transform: translateX(-100%); /* Esconder a sidebar */
+}
+
+.LandingPageNavBar {
+  background-color: #EEEEEE;
+  height: 100%; /* Preenche toda a altura da sidebar */
+}
+
+.LandingPageNavBarMarca {
+  font-size: 1.5rem;
+}
+
+.LandingPageNavBarLink {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+}
+
+.LandingPageNavBarLink:hover {
+  background-color: #495057; /* Cor de hover */
+  border-radius: 4px;
+}
+
+.sidebar-fechada ~ .BemVindo-Container {
+  margin-left: 0;
 }
 
 
-/* Estilo do texto */
 .Titulo {
   font-size: 5rem;
   color: #333;
@@ -107,10 +181,10 @@
 
 @keyframes SuavizarDesaparecimento {
   0% {
-    border-right-color: rgba(0, 0, 0, 0.75); /* Cursor visível */
+    border-right-color: rgba(0, 0, 0, 0.75); 
   }
   100% {
-    border-right-color: transparent; /* Cursor invisível */
+    border-right-color: transparent; 
   }
 }
 

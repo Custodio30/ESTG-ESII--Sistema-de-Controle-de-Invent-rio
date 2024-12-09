@@ -1,52 +1,114 @@
+/* Estilo geral da página */
 .BodyLoginPage {
   margin: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-}
-
-/* Estilos gerais do Container */
-.card-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  background-image: url("../../public/Images/ImagemFundo.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* Estilos do Card */
-.card {
-  background-color: #ffffff;
+/* Container principal */
+.LoginPageContainer {
+  display: flex;
+  width: 50vw;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative; /* Adicionado para conter a animação de ícones */
+}
+
+/* Borda animada com ícones */
+/* Borda animada com ícones */
+.icon-border-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Evita que interfira com cliques no formulário */
+  z-index: 0; /* Certifica-se de que fique abaixo do conteúdo principal */
+}
+
+/* Ícones individuais */
+.icon-border-animation .icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: #007bff; /* Cor do ícone */
+  animation: moveIconAround 5s linear infinite;
+}
+
+/* Animação de mover ícones ao redor */
+@keyframes moveIconAround {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(100%, -50%);
+  }
+  50% {
+    transform: translate(0, -100%);
+  }
+  75% {
+    transform: translate(-100%, -50%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Lado da imagem */
+.LoginPageSideImagem {
+  flex: 1; /* Garante que ocupa metade do espaço horizontal */
+  background-image: url("../../public/Images/images.png");
+  background-repeat: no-repeat;
+  background-size: cover; /* Faz a imagem preencher o espaço */
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+/* Card principal */
+.LoginPageCard {
+  flex: 1; /* Garante que ocupa metade do espaço horizontal */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza os itens verticalmente */
+  align-items: center;
   padding: 40px 30px;
-  width: 300px;
+  background-color: #ffffff;
+  border-radius: 8px;
   text-align: center;
-  transition: all 0.3s ease-in-out;
 }
 
 /* Cabeçalho do Card */
-.card h2 {
+.LoginPageCard h2 {
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Grupo de Formulário */
-.form-group {
+/* Grupo de formulário */
+.LoginFormGroup {
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px; /* Limita a largura máxima dos campos */
   text-align: left;
 }
 
-.form-group label {
+.LoginFormGroup label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   color: #666;
 }
 
-.form-group input {
+.LoginFormGroup input {
   width: 100%;
   padding: 10px;
   font-size: 14px;
@@ -55,9 +117,10 @@
   box-sizing: border-box;
 }
 
-/* Botão de Enviar */
-.submit-btn {
+/* Botão de envio */
+.LoginSubmitBotao {
   width: 100%;
+  max-width: 300px; /* Mantém consistência com os campos de entrada */
   padding: 10px;
   background-color: #4CAF50;
   border: none;
@@ -68,211 +131,20 @@
   margin-bottom: 10px;
 }
 
-.submit-btn:hover {
+.LoginSubmitBotao:hover {
   background-color: #45a049;
 }
 
-/* Botão de Alternar Modo */
-.toggle-btn {
+/* Botão de alternar modo */
+.LoginToggleBotao {
   background: none;
   border: none;
   color: #007bff;
   cursor: pointer;
   font-size: 14px;
+  margin-top: 10px;
 }
 
-.toggle-btn:hover {
+.LoginToggleBotao:hover {
   text-decoration: underline;
-}
-
-
-.box {
-  position: absolute; /* Permite posicionar a caixa independentemente */
-  top: 85%; /* Move o topo da caixa para o meio da tela */
-  left: 44%; /* Move o lado esquerdo da caixa para o meio da tela */
-  transform: translate(-50%, -50%); /* Centraliza completamente (ajuste de margem) */
-  width: 200px;
-  height: 150px;
-  transform-style: preserve-3d;
-  animation: dropBox 1.5s ease-out forwards, openBox 1s ease-out 1.5s forwards;
-}
-
-.box-side,
-.box-lid,
-.box-bottom {
-  position: absolute;
-  background: #b8916b;
-  border: 2px solid #8c6239;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Abas da caixa */
-.box-lid {
-  width: 200px;
-  height: 150px;
-  background: #b8916b;
-  transform-origin: center bottom;
-}
-
-.box-lid-front {
-  transform: translateZ(75px) rotateX(-270deg);
-}
-
-.box-lid-back {
-  transform: translateZ(-75px) rotateX(270deg);
-}
-
-.box-lid-left {
-  width: 150px;
-  height: 115px;
-  transform-origin: left center;
-  transform: rotateY(-90deg) translateZ(-57px) translateY(91px) translateX(-75px) rotateX(-90deg); /* Inicialmente fechada */
-}
-
-.box-lid-right {
-  width: 150px;
-  height: 100px;
-  transform-origin: right center;
-  transform: rotateY(90deg) translateZ(90px) rotateX(0); /* Inicialmente fechada */
-}
-
-/* Faces principais */
-.box-side {
-  width: 200px;
-  height: 150px;
-}
-
-.box-side-front {
-  transform: translateZ(75px);
-}
-
-.box-side-back {
-  transform: rotateY(180deg) translateZ(75px);
-}
-
-.box-side-left {
-  width: 150px;
-  transform: rotateY(-90deg) translateZ(74px);
-}
-
-.box-side-right {
-  width: 150px;
-  transform: rotateY(90deg) translateZ(124.6px);
-}
-
-/* Base da caixa */
-.box-bottom {
-  width: 200px;
-  height: 150px;
-  transform: rotateX(90deg) translateZ(75px);
-  background: #b58855;
-}
-
-/* Animações */
-
-@keyframes dropBox {
-  0% {
-    transform: translateY(-500%) rotateX(170deg) rotateY(-30deg);
-  }
-  100% {
-    transform: translateY(0) rotateX(170deg) rotateY(-30deg);
-  }
-}
-
-@keyframes openBox {
-  0% {
-    transform: translateY(0) rotateX(170deg) rotateY(-30deg);
-  }
-  100% {
-    transform: translateY(0) rotateX(170deg) rotateY(-30deg);
-  }
-}
-
-.box-lid-front {
-  animation: openLidFront 3s ease-out 3s forwards;
-}
-
-@keyframes openLidFront {
-  0% {
-    transform: translateZ(75px) rotateX(-270deg);
-  }
-  100% {
-    transform: translateZ(75px) rotateX(-50deg);
-  }
-}
-
-.box-lid-back {
-  animation: openLidBack 4s ease-out 4s forwards;
-}
-
-@keyframes openLidBack {
-  0% {
-    transform: translateZ(-75px) rotateX(270deg);
-  }
-  100% {
-    transform: translateZ(-75px) rotateX(50deg);
-  }
-}
-
-.box-lid-left {
-  animation: openLidLeft 2s ease-out 2s forwards;
-}
-
-@keyframes openLidLeft {
-  0% {
-    transform: rotateY(-90deg) translateZ(-57px) translateY(91px) translateX(-75px) rotateX(-90deg); /* Inicialmente fechada */
-  }
-  20%{
-    transform: rotateY(-90deg) translateZ(-51px) translateY(120px) translateX(-75px) rotateX(-60deg); /* Inicialmente fechada */
-  }
-  40%
-  {
-    transform: rotateY(-90deg) translateZ(-20px) translateY(145px) translateX(-75px) rotateX(-20deg); /* Inicialmente fechada */
-
-  }
-  60%
-  {
-    transform: rotateY(-90deg) translateZ(9px) translateY(147px) translateX(-75px) rotateX(10deg); /* Inicialmente fechada */
-  }
-  70%
-  {
-    transform: rotateY(-90deg) translateZ(70px) translateY(155px) translateX(-150px) rotateX(30deg); /* Inicialmente fechada */
-  }
-  75%
-  {
-    transform: rotateY(-90deg) translateZ(125px) translateY(155px) translateX(-220px) rotateX(50deg); /* Inicialmente fechada */
-  }
-  80%
-  {
-    transform: rotateY(-90deg) translateZ(206px) translateY(155px) translateX(-335px) rotateX(80deg); /* Inicialmente fechada */
-  }
-  85%
-  {
-    transform: rotateY(-90deg) translateZ(210px) translateY(128px) translateX(-350px) rotateX(110deg); /* Inicialmente fechada */
-  }
-  90%
-  {
-    transform: rotateY(-90deg) translateZ(200px) translateY(117px) translateX(-340px) rotateX(120deg); /* Inicialmente fechada */
-
-  }
-  95%
-  {
-    transform: rotateY(-90deg) translateZ(200px) translateY(111px) translateX(-350px) rotateX(130deg); /* Inicialmente fechada */
-  }
-  100% {
-    transform: rotateY(-90deg) translateZ(200px) translateY(106px) translateX(-360px) rotateX(140deg); /* Inicialmente fechada */
-  }
-}
-
-.box-lid-right {
-  animation: openLidRight 1s ease-out 1.5s forwards;
-}
-
-@keyframes openLidRight {
-  0% {
-    transform: rotateY(90deg) translateZ(100px) rotateX(0);
-  }
-  100% {
-    transform: rotateY(90deg) translateZ(100px) rotateX(-50deg);
-  }
 }

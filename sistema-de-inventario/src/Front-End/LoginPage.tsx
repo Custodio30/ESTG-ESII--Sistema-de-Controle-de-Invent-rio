@@ -50,56 +50,51 @@ const LoginPage: React.FC = () => {
   return (
     <body className="BodyLoginPage">
     <div>
-      <div className="card-container">
-        <div className="card">
+    <div className="icon-border-animation">
+        <div className="fas fa-car" style={{ animationDelay: '0s' }}></div>
+        <div className="fas fa-car" style={{ animationDelay: '0.5s' }}></div>
+        <div className="fas fa-car" style={{ animationDelay: '1s' }}></div>
+      </div>
+      <div className="card-container LoginPageContainer">
+        <div className="card LoginPageCard">
           <h2>{isLoginMode ? 'Login' : 'Registro'}</h2>
           
           <form onSubmit={handleSubmit}>
             {!isLoginMode && (
-              <div className="form-group">
+              <div className="form-group LoginFormGroup">
                 <label htmlFor="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" required={!isLoginMode} />
               </div>
             )}
 
-            <div className="form-group">
+            <div className="form-group LoginFormGroup">
               <label htmlFor="email">Email:</label>
               <input type="email" id="email" name="email" required />
             </div>
 
-            <div className="form-group">
+            <div className="form-group LoginFormGroup">
               <label htmlFor="password">Senha:</label>
               <input type="password" id="password" name="password" required />
             </div>
 
             {!isLoginMode && (
-              <div className="form-group">
+              <div className="form-group LoginFormGroup">
                 <label htmlFor="confirmPassword">Confirmar Senha:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required={!isLoginMode} />
               </div>
             )}
 
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="submit-btn LoginSubmitBotao">
               {isLoginMode ? 'Entrar' : 'Registrar'}
             </button>
           </form>
 
-          <button onClick={toggleMode} className="toggle-btn">
+          <button onClick={toggleMode} className="toggle-btn LoginToggleBotao">
             {isLoginMode ? 'Criar Conta' : 'Já tem uma conta? Faça Login'}
           </button>
         </div>
+        <div className="LoginPageSideImagem"/>
       </div>     
-      <div className="box">
-      <div className="box-lid box-lid-front"></div>
-      <div className="box-lid box-lid-back"></div>
-      <div className="box-lid box-lid-left"></div>
-      <div className="box-side box-side-front"></div>
-      <div className="box-side box-side-back"></div>
-      <div className="box-side box-side-left"></div>
-      <div className="box-side box-side-right"></div>
-      <div className="box-bottom"></div>
-    </div>
-
     </div>
   </body>
   );

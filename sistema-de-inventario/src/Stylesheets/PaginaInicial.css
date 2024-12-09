@@ -1,3 +1,7 @@
+.BodyPaginaInicial{
+    height: 100%;
+}
+
 .pagina-inicial {
     margin: 0;
     padding: 0;
@@ -6,30 +10,115 @@
     background-image: url('Images/ImagemFundo3.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: bottom right; /* Ajuste a posição da imagem */
+    background-position: bottom right; 
+    overflow: hidden;
 }
 
 .NavBarPaginaInicial {
-    position: absolute; /* Para permitir posicionamento absoluto */
-    top: 20px; /* Ajuste a posição vertical */
-    left: 20px; /* Ajuste a posição horizontal */
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
     display: flex;
     align-items: center;
-    gap: 20px; /* Espaçamento entre os itens */
-    font-family: Arial, sans-serif; /* Ajuste a fonte */
-    font-size: 1.2rem; /* Ajuste o tamanho da fonte */
-    color: #f8f9fa; /* Texto branco */
-    z-index: 100; /* Para garantir que fique acima do fundo */
+    gap: 20px; 
+    font-family: Arial, sans-serif; 
+    font-size: 1.2rem; 
+    color: #f8f9fa; 
+    z-index: 100; 
+    animation: slideIn3 1s ease-out forwards; /* Animação */
 }
 
 .NavBarPaginaInicial .NavBarItemPaginaInicial {
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: #f8f9fa; /* Define a cor do texto como branco */
+    text-decoration: none; 
+    color: #f8f9fa; 
     outline: none;
-    transition: color 0.3s ease; /* Adiciona animação ao passar o mouse */
+    transition: color 0.3s ease; 
 }
 
 .NavBarPaginaInicial .NavBarItemPaginaInicial:hover {
     text-shadow: 0px 0px 5px black;
-
 }
+
+.DivPaginaCarroETexto-PaginaInicial {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 3%; 
+    z-index: 10; 
+    animation: slideIn 1.5s ease-out forwards; /* Animação */
+}
+
+
+.DivTextoPrincipal-PaginaInicial {
+    max-width: 600px; 
+    color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.Titulo1-PaginaInicial {
+    font-size: 3rem; 
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.Titulo2-PaginaInicial {
+    font-size: 1.5rem;
+    color: #f8f9fa;
+    margin-bottom: 20px;
+}
+
+.Texto-PaginaInicial {
+    font-size: 1rem; 
+    line-height: 1.5; 
+    margin-bottom: 30px;
+    color: #f8f9fa;
+}
+
+.DivBotaoPaginaInicial {
+    display: flex;
+    gap: 15px;
+}
+
+.canvas-pagina-inicial {
+    width: 100vw; /* Largura total da tela */
+    height: 100%; /* Altura proporcional */
+    bottom: 80%;
+    position: relative; /* Para evitar deslocamentos */
+    z-index: 0;
+    animation: slideIn2 1s ease-out 0.5s forwards; /* Animação com atraso */
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+
+    
+  }
+
+  @keyframes slideIn2 {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+
+    
+  }
+
+  @keyframes slideIn3{
+
+    from {
+        transform: translateY(-200%);
+      }
+      to {
+        transform: translateX(0);
+      }
+  
+  }

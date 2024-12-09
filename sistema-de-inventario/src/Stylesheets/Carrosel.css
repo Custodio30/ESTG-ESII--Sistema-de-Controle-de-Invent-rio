@@ -1,0 +1,61 @@
+/* Swiper.js básico */
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+  
+  .carrosel-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    width: 100%; 
+    padding: 20px; 
+    justify-content: center;
+    align-items: center; 
+    box-sizing: border-box; 
+}
+  
+  .carrosel-card {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 23%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .carrosel-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    color: #6c63ff;
+    background: #eef2ff;
+    padding: 10px;
+    border-radius: 50%;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+  }
+  
+  .card-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #222;
+    margin: 0;
+  }
+  
