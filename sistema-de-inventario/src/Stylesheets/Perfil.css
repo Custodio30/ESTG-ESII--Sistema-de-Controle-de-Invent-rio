@@ -3,14 +3,13 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f9;
-  background-image: url('https://wallpapers.com/images/hd/plain-red-background-v98es2x0z1wqum24.jpg'); /* Adicione o caminho da sua imagem */
+  background-color: #f9f4f4;
+  background-image: url('https://wallpapers.com/images/hd/plain-red-background-v98es2x0z1wqum24.jpg') !important;
   background-size: cover; /* Faz com que a imagem cubra toda a área */
   background-position: center; /* Centraliza a imagem */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .perfil-title {
   text-align: center;
@@ -22,7 +21,7 @@
   margin-top: 20px;
   padding: 15px;
   background-color: #ffffff;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 8px;
 }
 
@@ -107,6 +106,4 @@
   text-align: center;
   color: #888;
   font-size: 18px;
-
 }
-
