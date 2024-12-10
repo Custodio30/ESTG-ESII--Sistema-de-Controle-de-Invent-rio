@@ -1,0 +1,52 @@
+.painel-direito {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 300px; 
+    height: 100%;
+    background-color: #832425;
+    color: white; 
+    padding: 20px; 
+    overflow-y: auto; 
+    box-shadow: 1px 5px 5px black; 
+  }
+  
+  .TituloPainel{
+    margin: 15px;
+    font-size: 22px;
+    font-family: "Gill Sans", sans-serif;
+  }
+  
+  
+.ItemListaSideBar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.BotaoItemSideBar {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 200px;  /* Tamanho fixo dos botões */
+  text-align: center;
+}
+
+.BotaoItemSideBar:hover {
+  background-color: #45a049; /* Cor ao passar o mouse */
+  transform: scale(1.05); /* Leve aumento de tamanho */
+}
+
+.BotaoItemSideBar.selected {
+  background-color: #008CBA; /* Cor de fundo quando o botão está selecionado */
+  font-weight: bold;
+}
+
+.BotaoItemSideBar:focus {
+  outline: none; /* Remove o contorno ao clicar */
+}

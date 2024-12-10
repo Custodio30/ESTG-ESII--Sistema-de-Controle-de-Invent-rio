@@ -2,30 +2,220 @@
   box-sizing: border-box;
 }
 
-.ListarCarrosContainer {
-  margin: 0 auto; /* Centraliza */
-  padding: 16px; /* Espaçamento interno */
-  max-width: 100%; /* Garante que não ultrapasse a largura */
-  overflow-x: hidden; /* Evita que elementos causem scroll horizontal */
-  display: flex; /* Organiza os cards em uma linha */
-  flex-wrap: wrap; /* Permite que os cards "quebrem linha" se necessário */
-  justify-content: center; /* Centraliza os cards no contêiner */
-  gap: 16px; /* Espaçamento entre os cards */
+.card-container.ListarCarrosContainer {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para uma nova linha */
+  justify-content: flex-start; /* Alinha os itens à esquerda */
+  gap: 20px; /* Espaçamento entre os cards */
+  overflow-y: auto; /* Permite rolagem vertical se necessário */
+  overflow-x: hidden; /* Esconde barra horizontal, se não necessário */
+  overflow: auto;
+  max-height: 100vh;
+  padding: 10px; /* Margem interna ao redor dos cards */
+  max-width: 100%; /* Garante que o contêiner respeite a largura da tela */
+  box-sizing: border-box;
 }
 
 .ListarCarrosCard {
   border: 1px solid #ccc;
+  margin: 20px;
   border-radius: 8px;
-  padding: 16px;
-  width: 250px; /* Largura fixa */
+  width: 350px;
+  min-height: 550px; /* Altura mínima garantida */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  flex: 0 0 auto; /* Garante que cada card tenha a largura especificada */
+  padding: 10px;
+  overflow: hidden; /* Impede que o conteúdo ultrapasse o card */
+  position: relative;
+  perspective: 1000px; /* Perspectiva 3D para o card */
+  display: flex;
+  flex-direction: column; /* Organiza os itens em coluna */
+  flex: 1 1 300px; /* Permite flexibilidade, mas mantém largura mínima */
+  max-width: 350px; /* Impõe limite máximo */
+  min-width: 300px; /* Evita que fiquem muito pequenos */
+  box-sizing: border-box;
 }
 
 .ListarCarrosImagem {
-  width: 100%; /* Garante que a imagem ocupe 100% da largura do card */
-  height: auto; /* Mantém a proporção */
+  width: 100%; 
+  height: auto;
   border-radius: 8px 8px 0 0;
 }
 
+.CardInterior {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Assegura que o interior do card ocupe 100% da altura */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  flex-grow: 1;
+}
+
+.ListarCarrosCard:hover .CardInterior {
+  transform: rotateY(180deg); /* Gira o card */
+}
+
+.CartaTras .cancel-button {
+  background-color: #f44336; /* Cor vermelha */
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CartaTras .cancel-button:hover {
+  background-color: #e53935; /* Tom mais escuro de vermelho */
+  transform: scale(1.05);
+}
+
+.CartaTras .cancel-button:active {
+  background-color: #c62828; /* Tom mais escuro ainda */
+  transform: scale(1);
+}
+
+.CardFrente, .CartaTras {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* As faces ocupam toda a altura do card */
+  backface-visibility: hidden;
+}
+
+.CardFrente {
+  z-index: 2;
+  transform: rotateY(0deg); /* Frente do card */
+}
+
+.CartaTras {
+  transform: rotateY(180deg); /* Parte de trás do card */
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Habilita a rolagem */
+  height: 100%; /* A altura deve ser flexível para acomodar o conteúdo */
+  flex-grow: 1; /* Ocupa o restante do espaço */
+}
+
+.CartaTras button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CartaTras button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.CartaTras button:active {
+  background-color: #388e3c;
+  transform: scale(1);
+}
+
+.CartaTras input,
+.CartaTras textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.CartaTras input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.CartaTras label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.CartaTras input[type="number"]:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  outline: none;
+}
+
+.CartaTras input:focus,
+.CartaTras textarea:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  outline: none;
+}
+
+.CartaTras textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.CartaTras .delete-button {
+  background-color: #f44336; /* Vermelho */
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CartaTras .delete-button:hover {
+  background-color: #e53935; /* Tom mais escuro de vermelho */
+  transform: scale(1.05);
+}
+
+.CartaTras .delete-button:active {
+  background-color: #c62828; /* Tom mais escuro ainda */
+  transform: scale(1);
+}
+
+.no-permission {
+  font-size: 16px;
+  color: #f44336; /* Vermelho para destaque */
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #f44336;
+  border-radius: 5px;
+  background-color: #fff5f5; /* Fundo claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.no-permission:hover {
+  transform: scale(1.05);
+}

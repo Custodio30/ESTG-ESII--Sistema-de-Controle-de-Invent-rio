@@ -27,17 +27,17 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
-    $modelo = $data["title"] ?? null; 
+    $marca = $data["title"] ?? null; 
     $descricao = $data["description"] ?? null; 
     $kms = isset($data["items"][0]) ? floatval($data["items"][0]) : null; 
     $tipo = $data["items"][1] ?? null;
     $ano = isset($data["items"][2]) ? intval($data["items"][2]) : null;
-    $marca = $data["items"][3] ?? null; 
+    $modelo = $data["items"][3] ?? null; 
     $preco = isset($data["items"][4]) ? floatval($data["items"][4]) : null; 
     $image = $data["image"] ?? null;
+    $RegistoID = $data["RegistoID"] ?? null; 
 
-
-    if (!$modelo || !$descricao || !$kms || !$tipo || !$ano || !$marca || !$preco || !$image) {
+    if (!$marca || !$descricao || !$kms || !$tipo || !$ano || !$modelo || !$preco || !$image || !$RegistoID) {
         http_response_code(400);
         echo json_encode([
             "status" => "error",
@@ -47,9 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
     }
 
 
-    $sql = "INSERT INTO carros (modelo, Descricao, Km, Tipo, Ano, Marca, Preco, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO carros (Marca, Descricao, Km, Tipo, Ano, Modelo, Preco, imagem, RegistoID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssdsisss", $modelo, $descricao, $kms, $tipo, $ano, $marca, $preco, $image);
+    $stmt->bind_param("ssdsisssi", $marca, $descricao, $kms, $tipo, $ano, $modelo, $preco, $image, $RegistoID);
 
     if ($stmt->execute()) {
         http_response_code(201);
@@ -57,14 +57,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
             "status" => "success",
             "message" => "Carro salvo com sucesso!",
             "carro" => [
-                "modelo" => $modelo,
+                "Marca" => $marca,
                 "descricao" => $descricao,
                 "kms" => $kms,
                 "tipo" => $tipo,
                 "ano" => $ano,
-                "marca" => $marca,
+                "marca" => $modelo,
                 "preco" => $preco,
-                "imagem" => $image
+                "imagem" => $image,
+                "RegistoID" => $RegistoID
             ]
         ]);
     } else {

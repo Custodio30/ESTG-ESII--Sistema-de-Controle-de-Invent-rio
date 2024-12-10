@@ -58,17 +58,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
         $stmt->close();
     } else {
  
-        $sql = "INSERT INTO registo (nome, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO registo (nome, email, password, Imagem, Genero, Morada, Telefone) VALUES (?, ?, ?, NULL, NULL, NULL, NULL)";
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $nome, $email, $hashedPassword);
 
         if ($stmt->execute()) {
+            $RegistoID = $conn->insert_id;
             http_response_code(201);
             echo json_encode([
                 "status" => "success",
                 "message" => "Utilizador registrado com sucesso!",
-                "nome" => $nome
+                "nome" => $nome,
+                "RegistoID" => $RegistoID
             ]);
         } else {
             http_response_code(400);

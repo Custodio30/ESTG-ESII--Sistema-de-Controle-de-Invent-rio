@@ -1,4 +1,4 @@
-.BodyLandingPage {
+.DivLandingPage {
   margin: 0;
   padding: 0;
   display: flex;
@@ -20,120 +20,24 @@
 
 }
 
-.TopBarLandingPage.with-sidebar {
-  margin-left: 250px;
-}
-
-.TopBarLandingPage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 60px;
-  width: 100%;
-  background-color: #343a40; 
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  transition: margin-left 0.3s ease-in-out; 
-}
-
-.Mais {
-  margin-right: 20px; 
-  font-size: 24px; 
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.Mais:hover {
-  transform: scale(1.1);
-}
-
 .DivCentralLandingPage {
   position: absolute; 
-  top: 65px; 
-  left: 5px; 
-  right: 305px; 
+  top: 0; 
+  right: 5px; 
+  left: 305px; 
   bottom: 5px; 
-  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
-}
-
-.DivCentralLandingPage.SideBarAberta {
-  margin-left: 250px; 
-  margin-right: 5px; 
-}
-.painel-direito {
-  position: fixed;
-  top: 60px; 
-  right: 0;
-  width: 300px; 
-  height: calc(100% - 60px); 
-  background-color: black;
-  color: white; 
-  padding: 20px; 
-  overflow-y: auto; 
-  z-index: 1050; 
-  border-left: 1px solid #444; 
-}
-
-.LandingPageNavBarContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 250px;
-  background-color: #343a40; /* Cor escura padrão do Bootstrap */
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  z-index: 1040;
-}
-
-.conteudoSideBarAberta {
-  transform: translateX(0); /* Mostrar a sidebar */
-}
-
-.conteudoSideBarFechada {
-  transform: translateX(-100%); /* Esconder a sidebar */
-}
-
-.LandingPageNavBar {
-  background-color: #EEEEEE;
-  height: 100%; /* Preenche toda a altura da sidebar */
-}
-
-.LandingPageNavBarMarca {
-  font-size: 1.5rem;
-}
-
-.LandingPageNavBarLink {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-}
-
-.LandingPageNavBarLink:hover {
-  background-color: #495057; /* Cor de hover */
-  border-radius: 4px;
-}
-
-.sidebar-fechada ~ .BemVindo-Container {
-  margin-left: 0;
 }
 
 
 .Titulo {
   font-size: 5rem;
-  color: #333;
-  border-right: 2px solid rgba(0, 0, 0, 0.75);
+  color: white;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -152,36 +56,9 @@
   animation: SuavizarDesaparecimento 0.5s forwards;
 }
 
-
-@keyframes NavAparecimento{
-
-  0% {
-    transform: translateY(100%); 
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0); 
-    opacity: 1; 
-  }
-
-}
-
-@keyframes BotaoAparecimento{
-
-  0% {
-    transform: translateX(-100px); 
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0px); 
-    opacity: 1; 
-  }
-
-}
-
 @keyframes SuavizarDesaparecimento {
   0% {
-    border-right-color: rgba(0, 0, 0, 0.75); 
+    border-right-color: rgba(255, 255, 255, 0.75); 
   }
   100% {
     border-right-color: transparent; 
@@ -206,9 +83,10 @@
 
 @keyframes AnimacaoCursor {
   from {
-    border-right-color: rgba(0, 0, 0, 0.75);
+    border-right-color: rgba(255, 255, 255, 0.75);
   }
   to {
     border-right-color: transparent;
   }
 }
+
