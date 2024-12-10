@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
-    $marca = $data["title"] ?? null; 
+    $marca = $data["marca"] ?? null; 
     $descricao = $data["description"] ?? null; 
     $kms = isset($data["items"][0]) ? floatval($data["items"][0]) : null; 
     $tipo = $data["items"][1] ?? null;

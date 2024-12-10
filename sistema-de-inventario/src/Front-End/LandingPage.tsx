@@ -8,7 +8,11 @@ const LandingPage: React.FC = () => {
   const [nome, setNome] = useState<string>("Usuário");
   const [mostrarCursor, setMostrarCursor] = useState(true);
   const [mostrarWebsite, setMostrarWebsite] = useState(false);
-  const [slideIndex, setSlideIndex] = useState<number>(0); // Estado para controlar o slide
+  const [slideIndex, setSlideIndex] = useState<number>(0);
+  const [marcaSelecionada, setMarcaSelecionada] = useState<string>(""); // Estado da marca selecionada
+  const [modeloSelecionado, setModeloSelecionado] = useState<string>(""); // Estado do modelo selecionado
+
+
 
   const tituloRef = useRef<HTMLHeadingElement>(null);
 
@@ -40,9 +44,15 @@ const LandingPage: React.FC = () => {
       <div className="DivLandingPage">
         {mostrarWebsite && (
           <div>
-            <SideBar setSlideIndex={setSlideIndex} /> {/* Passa a função para atualizar o estado */}
+            <SideBar setSlideIndex={setSlideIndex} 
+            setMarcaSelecionada={setMarcaSelecionada}  // Passando o setter da marca
+            setModeloSelecionado={setModeloSelecionado} // Passando o setter do modelo
+            /> 
             <div className="DivCentralLandingPage">
-              <Carrosel slideIndex={slideIndex} /> {/* Passa o índice para o Carrosel */}
+              <Carrosel slideIndex={slideIndex}
+               marcaSelecionada={marcaSelecionada}  // Passando a marca para Carrosel
+               modeloSelecionado={modeloSelecionado} // Passando o modelo para Carrosel
+                /> {/* Passa o índice para o Carrosel */}
             </div>
           </div>
         )}

@@ -8,9 +8,11 @@ import Perfil from "./Perfil";
 
 interface CarroselProps {
   slideIndex: number;
+  marcaSelecionada: string;  // Adicionando marcaSelecionada como prop
+  modeloSelecionado: string; // Adicionando modeloSelecionado como prop
 }
 
-const Carrosel: React.FC<CarroselProps> = ({ slideIndex }) => {
+const Carrosel: React.FC<CarroselProps> = ({ slideIndex, marcaSelecionada, modeloSelecionado }) => {
   const swiperRef = React.useRef<any>(null);
 
   useEffect(() => {
@@ -28,7 +30,10 @@ const Carrosel: React.FC<CarroselProps> = ({ slideIndex }) => {
     >
       <SwiperSlide>
         <div className="car-list-slide">
-        <ListarCarros />
+        <ListarCarros 
+        marcaSelecionada={marcaSelecionada} 
+        modeloSelecionado={modeloSelecionado}
+        /> 
         </div>
       </SwiperSlide>
 

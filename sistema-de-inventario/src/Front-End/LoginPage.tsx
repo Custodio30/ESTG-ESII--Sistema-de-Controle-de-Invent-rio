@@ -36,6 +36,7 @@ const LoginPage: React.FC = () => {
             alert(result.message);
             localStorage.setItem('nomeUsuario', result.nome); 
             localStorage.setItem('RegistoID', result.RegistoID); 
+            localStorage.setItem('Admin', result.Admin);
             navigate('/landing'); 
         } else {
             alert(result.message);

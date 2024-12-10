@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
     $isLoginMode = $data["isLoginMode"];
 
     if ($isLoginMode) {
-        $sql = "SELECT RegistoID, nome, password FROM registo WHERE email = ?";
+        $sql = "SELECT RegistoID, nome, password, Admin FROM registo WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($RegistoID, $retrievedName, $hashedPassword);
+        $stmt->bind_result($RegistoID, $retrievedName, $hashedPassword, $Admin);
         $stmt->fetch();
 
         if ($hashedPassword && password_verify($password, $hashedPassword)) {
@@ -46,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
                 "status" => "success",
                 "message" => "Login bem-sucedido!",
                 "nome" => $retrievedName, 
-                "RegistoID" => $RegistoID
+                "RegistoID" => $RegistoID,
+                "Admin" => $Admin
             ]);
         } else {
             http_response_code(401);
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $data) {
         $stmt->close();
     } else {
  
-        $sql = "INSERT INTO registo (nome, email, password, Imagem, Genero, Morada, Telefone) VALUES (?, ?, ?, NULL, NULL, NULL, NULL)";
+        $sql = "INSERT INTO registo (nome, email, password, Imagem, Genero, Morada, Telefone, Admin) VALUES (?, ?, ?, NULL, NULL, NULL, NULL, 0)";
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $nome, $email, $hashedPassword);
