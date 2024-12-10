@@ -29,7 +29,7 @@ if ($conn->connect_error) {
 // Verificar se o método é GET
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // Consulta SQL para buscar dados da tabela carros
-    $sql = "SELECT CarrosID, Marca, descricao, km, tipo, ano, Modelo, preco, imagem, RegistoID FROM carros";
+    $sql = "SELECT CarrosID, modelo, descricao, km, tipo, ano, marca, preco, imagem FROM carros";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

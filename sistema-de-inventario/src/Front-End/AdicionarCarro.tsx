@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Stylesheets/AdicionarCarro.css";
 
 const AdicionarCarro: React.FC = ({}) => {
@@ -7,35 +7,7 @@ const AdicionarCarro: React.FC = ({}) => {
     title: "",
     description: "",
     items: ["", "", "", "", ""],
-    
   });
-  const RegistoID = localStorage.getItem("RegistoID");
-  const parsedRegistoID = RegistoID ? JSON.parse(RegistoID) : {};
-  const [isNotificationVisible, setNotificationVisible] = useState(false);
-  const [marcas, setMarcas] = useState<string[]>([]);
-  const [filteredMarcas, setFilteredMarcas] = useState<string[]>([]);
-  const [modelos, setModelos] = useState<string[]>([]);
-  const [marcaSelecionada, setMarcaSelecionada] = useState("");
-
-
-  const dataToSend = {
-    ...carData,
-    RegistoID: parsedRegistoID,
-  };
-  
-
-  useEffect(() => {
-    // Fetch marcas ao carregar o componente
-    fetch("http://localhost:4000/get-makes") // URL da CarQuery para marcas
-      .then((response) => response.json())
-      .then((data) => {
-        const makes = data.Makes.map((make: any) => make.make_display);
-        setMarcas(makes);
-      })
-      .catch((error) => console.error("Erro ao buscar marcas:", error));
-  }, []);
-
-
 
   const [isImageValid, setIsImageValid] = useState(false);
 
@@ -75,42 +47,13 @@ const AdicionarCarro: React.FC = ({}) => {
     img.src = url;
   };
 
-  const handleMarcaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setMarcaSelecionada(value);
-  
-    if (value) {
-      const filtered = marcas.filter((marca) =>
-        marca.toLowerCase().startsWith(value.toLowerCase())
-      );
-      setFilteredMarcas(filtered);
-    } else {
-      setFilteredMarcas([]);
-    }
-  };
-
-  const handleMarcaSelect = (marca: string) => {
-    setMarcaSelecionada(marca);
-    setFilteredMarcas([]);
-  
-    fetch(`http://localhost:4000/get-models?make=${marca}`) // Corrigido: Concatenar strings corretamente
-      .then((response) => response.json())
-      .then((data) => {
-        const models = data.Models.map((model: any) => model.model_name);
-        setModelos(models);
-      })
-      .catch((error) => console.error("Erro ao buscar modelos:", error));
-  };
-
-
   const handleSave = () => {
-    console.log("Dados a serem enviados:", dataToSend);
     fetch("http://localhost/backend/GuardarCarro.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataToSend),
+      body: JSON.stringify(carData),
     })
       .then((response) => {
         if (!response.ok) {
@@ -120,41 +63,33 @@ const AdicionarCarro: React.FC = ({}) => {
       })
       .then((data) => {
         console.log("Dados salvos:", data);
-        setNotificationVisible(true);
-
-        // Ocultar a notificação após 3 segundos
-        setTimeout(() => {
-          setNotificationVisible(false);
-        }, 3000);
       })
       .catch((error) => console.error("Erro ao salvar:", error));
   };
 
   return (
-    <div className="modal show CarroGuardarModal">
-      <div className="modal-dialog modal-lg CarroGuardarModalDialog">
+    <div className="modal show d-block CarroGuardarModal">
+      <div className="modal-dialog modal-dialog-centered modal-lg CarroGuardarModalDialog">
         <div className="modal-content CarroGuardarModelContent">
+          <div className="modal-header">
+            <h5 className="modal-title">Editar Card</h5>
+            <button
+              type="button"
+              className="btn-close BtnCloseCarroGuardar"
+              aria-label="Fechar"
+            ></button>
+          </div>
           <div className="modal-body CarroGuardarModalBody">
             <div className="card AdicionarCarroCard">
               <div className="form-container AdicionarCarroFormContainer">
-              <input
+                <input
                   type="text"
                   className="form-control mb-2"
-                  value={marcaSelecionada}
-                  onChange={handleMarcaInputChange}
-                  placeholder="Marca do carro"
-                />
-                <ul className="list-group">
-                  {filteredMarcas.map((marca, index) => (
-                    <li
-                      key={index}
-                      className="list-group-item"
-                      onClick={() => handleMarcaSelect(marca)}
-                    >
-                      {marca}
-                    </li>
-                  ))}
-                </ul>
+                  name="title"
+                  value={carData.title}
+                  onChange={handleInputChange}
+                  placeholder="Modelo do Carro"
+                  />
                 <textarea
                   className="form-control"
                   name="description"
@@ -195,19 +130,15 @@ const AdicionarCarro: React.FC = ({}) => {
                       placeholder="Ano"
                       />
                   </li>
-                  <select
-                  className="form-select mt-3"
-                  value={carData.items[3]} // Campo de modelo
-                  onChange={(e) => handleInputChange(e, 3)}
-                >
-                  <option value="">Selecione um modelo</option>
-                  {modelos.map((modelo, index) => (
-                    <option key={index} value={modelo}>
-                      {modelo}
-                    </option>
-                  ))}
-                </select>
-
+                  <li className="list-group-item">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={carData.items[3]}
+                      onChange={(e) => handleInputChange(e, 3)}
+                      placeholder="Marca"
+                      />
+                  </li>
                   <li className="list-group-item">
                     <input
                       type="text"
@@ -247,25 +178,19 @@ const AdicionarCarro: React.FC = ({}) => {
             </div>
           </div>
           <div className="modal-footer CarroGuardarModelFooter">
-            <button type="button" className="btn btn-secondary CancelarBotao">
+            <button type="button" className="btn btn-secondary">
               Cancelar
             </button>
             <button
               type="button"
-              className="btn btn-primary GuardarBotao"
+              className="btn btn-primary"
               onClick={handleSave}
             >
               Salvar
             </button>
           </div>
-          
         </div>
       </div>
-      {isNotificationVisible && (
-        <div className="notification">
-          <p>Carro adicionado com sucesso!</p>
-        </div>
-      )}
     </div>
   );
 };
