@@ -1,63 +1,137 @@
 .modal.show {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+  display: flex; /* Ativa o layout flex para o contêiner */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  position: fixed; /* Garante que o modal fique fixo na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050; /* Certifica que o modal fique acima de outros elementos */
+  visibility: visible; /* Garante que o modal esteja visível */
+  opacity: 1; /* Totalmente opaco */
+  transition: opacity 0.3s ease; /* Transição suave para fade-in/fade-out */
+}
 
-  .CarroGuardarModalBody .AdicionarCarroCard {
-    display: flex;
-    flex-direction: row; /* Organiza os elementos em linha (lado a lado) */
-    gap: 20px; /* Espaçamento entre imagem e inputs */
-    height: 100%;
+.modal.hide {
+  visibility: hidden; /* Oculta visualmente o modal */
+  opacity: 0; /* Torna-o invisível */
+}
+
+.CarroGuardarModalDialog {
+  width: 90%; /* Aumenta a largura do modal para 90% da tela */
+  max-width: 1200px; /* Define uma largura máxima para o modal */
+  margin: 0; /* Remove margens padrão */
+}
+
+.CarroGuardarModelContent {
+  border-radius: 10px; /* Borda arredondada */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra leve */
+  width: 100%;
+  height: 80%; /* Aumenta a altura do modal */
+}
+
+.CarroGuardarModalBody .AdicionarCarroCard {
+  display: flex;
+  flex-direction: row; /* Organiza os elementos em linha (lado a lado) */
+  gap: 20px; /* Espaçamento entre imagem e inputs */
+  height: 100%;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745; /* Cor verde para indicar sucesso */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  z-index: 1060; /* Garantir que fique acima do conteúdo */
+  opacity: 0;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  
-  .CarroGuardarImagemTopContainer {
-    background-color: #e1e1e1;
-    height: 300px; /* Altura fixa */
-    width: 35%; /* Metade da largura do cartão */
-    flex-shrink: 0; /* Impede que a imagem diminua ao redimensionar */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Evita que a imagem extrapole o contêiner */
-    border-radius: 8px; /* Bordas arredondadas */
+  50% {
+    opacity: 1;
   }
-  
-  .CarroGuardarImagemTopContainer img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Centraliza e mantém a proporção da imagem */
+  100%{
+    opacity: 0;
   }
-  
-  .CarroGuardarModalBody .AdicionarCarroFormContainer {
-    flex-grow: 1; /* Faz os inputs ocuparem o restante do espaço */
-    display: flex;
-    flex-direction: column; /* Inputs organizados verticalmente */
-    gap: 15px; /* Espaçamento entre os inputs */
-  }
-  
-  .CarroGuardarImagemTopContainer span {
-    color: #6c757d; /* Cor da mensagem de exemplo */
-  }
-  
-  .CarroGuardarModalDialog {
-    max-width: 100%;
-    height: 100%;
-    margin: 0 !important;
-  }
-  
-  .CarroGuardarModelContent {
-    border-radius: 10px; /* Borda arredondada para o modal */
-    height: 100%;
-  }
-  
-  .CarroGuardarModelFooter button {
-    min-width: 100px; /* Tamanho mínimo para botões */
-  }
-  
-  .AdicionarCarroFormContainer {
-    margin-left: 15px;
-    margin-top: 15px;
-  }
-  .CarroGuardarImagemTopContainer{
-    margin-right: 15px;
-    margin-top: 15px;
-  }
+}
+
+.CarroGuardarImagemTopContainer {
+  background-color: #e1e1e1;
+  height: 300px;
+  width: 35%; 
+  flex-shrink: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  border-radius: 8px; 
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.CarroGuardarImagemTopContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Centraliza e mantém a proporção da imagem */
+}
+
+.CarroGuardarModalBody .AdicionarCarroFormContainer {
+  flex-grow: 1; /* Faz os inputs ocuparem o restante do espaço */
+  display: flex;
+  flex-direction: column; /* Inputs organizados verticalmente */
+  gap: 15px; /* Espaçamento entre os inputs */
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.CarroGuardarImagemTopContainer span {
+  color: #6c757d; /* Cor da mensagem de exemplo */
+}
+
+.GuardarBotao{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  min-width: 120px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.CancelarBotao{
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 5px;
+  border: none;
+  min-width: 120px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.CancelarBotao:hover{
+  background-color: #de3023;
+}
+
+.GuardarBotao:hover{
+  background-color: #2e9932;
+}
