@@ -1,0 +1,27 @@
+Gerenciamento de Código-Fonte:
+
+Uso do Git -> Git Hub
+
+Entrega Contínua (CD):
+
+Entrega semanal -> Foi feito um resumo semanal todas as terças feiras , mostrando progressos e processos feitos de cada semana
+
+Infraestrutura como Código (IaC):
+
+ferramenta usada -> xampp
+
+Monitoramento e Logs:
+
+Exemplo de Pipeline DevOps
+1. Configuração:
+
+Um backend (PHP).
+Um frontend (React typescript).
+Um banco de dados (Mysql).
+
+2. Ferramentas
+
+Controle de Código: GitHub.
+CI/CD: Projecto github
+Infraestrutura: xamp.
+Hospedagem: xamp.
